@@ -132,46 +132,22 @@
     }
   };
 
-  /* Networks shown on each post's share row. Add or remove lines to change
-     which buttons appear. "kind" is web | email | copy. */
-  var SHARE_NETWORKS = [
-    { key: "x", label: "X", icon: "x", kind: "web",
-      url: function (t, u) { return "https://x.com/intent/post?text=" + encodeURIComponent(t + " - via @1micfi") + "&url=" + encodeURIComponent(u); } },
-    { key: "facebook", label: "Facebook", icon: "facebook", kind: "web",
-      url: function (t, u) { return "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(u); } },
-    { key: "whatsapp", label: "WhatsApp", icon: "whatsapp", kind: "web",
-      url: function (t, u) { return "https://wa.me/?text=" + encodeURIComponent(t + " " + u); } },
-    { key: "linkedin", label: "LinkedIn", icon: "linkedin", kind: "web",
-      url: function (t, u) { return "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(u); } },
-    { key: "email", label: "Email", icon: "mail", kind: "email",
-      url: function (t, u) { return "mailto:?subject=" + encodeURIComponent(t) + "&body=" + encodeURIComponent(u); } },
-    { key: "copy", label: "Copy link", icon: "link", kind: "copy", url: null }
-  ];
-
-  M.BLOG_SHARE_NETWORKS = SHARE_NETWORKS;
-
-  function shareButtons() {
-    var html = '<span class="share-label">Share:</span>';
-    for (var i = 0; i < SHARE_NETWORKS.length; i++) {
-      var net = SHARE_NETWORKS[i];
-      html +=
-        '<button class="share-btn" type="button" data-share-key="' + net.key + '" aria-label="Share on ' + net.label + '">' +
-        M.icon(net.icon, 16) + "<span>" + net.label + "</span></button>";
-    }
-    return html;
+  function flashLabel(button, text) {
+    var label = button.querySelector("span");
+    if (!label) return;
+    var original = label.getAttribute("data-label") || label.textContent;
+    label.setAttribute("data-label", original);
+    label.textContent = text;
+    button.classList.add("is-copied");
+    window.setTimeout(function () {
+      label.textContent = original;
+      button.classList.remove("is-copied");
+    }, 1800);
   }
 
   function copyLink(url, button) {
-    var label = button.querySelector("span");
-    var original = label ? label.textContent : "";
     function done(ok) {
-      if (!label) return;
-      label.textContent = ok ? "Copied" : "Press Ctrl+C";
-      button.classList.add("is-copied");
-      window.setTimeout(function () {
-        label.textContent = original;
-        button.classList.remove("is-copied");
-      }, 1800);
+      flashLabel(button, ok ? "Copied" : "Press Ctrl+C");
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(url).then(function () { done(true); }, function () { done(false); });
@@ -185,6 +161,21 @@
     }
   }
 
+  function canNativeShare() {
+    return typeof navigator.share === "function";
+  }
+
+  function shareButtons() {
+    var html = '<span class="share-label">Share:</span>';
+    html +=
+      '<button class="share-btn" type="button" data-share-key="share" aria-label="Share this post">' +
+      M.icon("share", 16) + "<span>Share</span></button>";
+    html +=
+      '<button class="share-btn" type="button" data-share-key="copy" aria-label="Copy link">' +
+      M.icon("link", 16) + "<span>Copy link</span></button>";
+    return html;
+  }
+
   M.initBlogShare = function () {
     var nodes = document.querySelectorAll("[data-blog-share]");
     if (!nodes.length) return;
@@ -195,30 +186,29 @@
         node.innerHTML = shareButtons();
         node.setAttribute("data-share-ready", "1");
       }
-      fillShare(node, {
+
+      var shareBtn = node.querySelector('[data-share-key="share"]');
+      var copyBtn = node.querySelector('[data-share-key="copy"]');
+      var info = {
         title: node.getAttribute("data-blog-title") || document.title,
         url: node.getAttribute("data-blog-url") || window.location.href
-      });
+      };
+
+      if (copyBtn) {
+        copyBtn.onclick = function (btn) {
+          return function () { copyLink(info.url, btn); };
+        }(copyBtn);
+      }
+
+      if (shareBtn) {
+        if (!canNativeShare()) {
+          shareBtn.hidden = true;
+        } else {
+          shareBtn.onclick = function () {
+            navigator.share({ title: info.title, url: info.url }).catch(function () {});
+          };
+        }
+      }
     }
   };
-
-  function fillShare(node, info) {
-    var buttons = node.querySelectorAll("[data-share-key]");
-    for (var i = 0; i < buttons.length; i++) {
-      (function (button) {
-        var key = button.getAttribute("data-share-key");
-        var net = null;
-        for (var n = 0; n < SHARE_NETWORKS.length; n++) {
-          if (SHARE_NETWORKS[n].key === key) { net = SHARE_NETWORKS[n]; break; }
-        }
-        if (!net) return;
-        button.onclick = function () {
-          if (net.kind === "copy") { copyLink(info.url, button); return; }
-          var target = net.url(info.title, info.url);
-          if (net.kind === "email") { window.location.href = target; return; }
-          window.open(target, "_blank", "noopener,noreferrer");
-        };
-      })(buttons[i]);
-    }
-  }
 })();
