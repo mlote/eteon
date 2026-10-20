@@ -491,6 +491,19 @@ a.project-card:hover {
   color: var(--link);
 }
 
+.contact-details {
+  margin-top: 20px;
+}
+
+.contact-details .row-text a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.contact-details .row-text a:hover {
+  text-decoration: underline;
+}
+
 /* #endregion */
 
 /* #region Social links */

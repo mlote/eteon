@@ -37,6 +37,9 @@
 
     var emailTexts = document.querySelectorAll("[data-email-text]");
     for (var n = 0; n < emailTexts.length; n++) emailTexts[n].textContent = M.CONTACT_EMAIL;
+
+    var addresses = document.querySelectorAll("[data-address]");
+    for (var p = 0; p < addresses.length; p++) addresses[p].textContent = M.ADDRESS;
   };
 
   M.inquiryUrl = function (channel, fields) {

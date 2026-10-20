@@ -416,6 +416,15 @@ body.menu-open .nav-panel {
   margin-top: 4px;
 }
 
+.footer-address a {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+.footer-address a:hover {
+  text-decoration: none;
+}
+
 .page-home .site-footer {
   padding-bottom: calc(72px + env(safe-area-inset-bottom));
 }
