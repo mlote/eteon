@@ -1,16 +1,25 @@
 /* =========================================================================
    MicFi - blog.js
    EDIT POSTS HERE.
-   Each item { ... } is one blog post shown on the Blog page.
+   Each item { ... } is one blog post. Everything about a post lives here -
+   the list card, the home teaser, the post page, and the RSS feed all read
+   from this one list.
      title   - post title
-     slug    - folder name of the post, e.g. "why-your-shop-needs-a-pos"
+     slug    - short url name, e.g. "why-your-shop-needs-a-pos"
+               the post page is blog/<slug>/index.html
      date    - publish date "YYYY-MM-DD"
      excerpt - one or two sentences shown in the list
      image   - optional picture, e.g. "/assets/blog/pos.png"
                leave "" to show the striped placeholder tile
      tag     - optional category label
-   To write a post: add an entry here, then create the folder
-   blog/<slug>/index.html by copying an existing post.
+     body    - the post text written in HTML, e.g.
+               "<p>Intro...</p><h2>Heading</h2><p>More...</p><ul><li>x</li></ul>"
+   TO ADD A POST:
+     1. Add an entry below (copy an existing one and edit it).
+     2. Copy the folder blog/why-your-shop-needs-a-pos to blog/<slug>.
+        You do NOT edit anything inside it - the page fills itself from here.
+     3. Optionally drop an image in assets/blog/.
+     4. Run:  node tools/generate-rss.js   (updates blog/rss.xml)
    The Blog link in every menu switches itself on as soon as this list
    is not empty.
    ========================================================================= */
@@ -25,7 +34,20 @@
       date: "2026-10-20",
       excerpt: "If you still track sales by hand, you are losing time and money. Here is what a POS changes for a growing shop.",
       image: "/assets/blog/pos.png",
-      tag: "POS"
+      tag: "POS",
+      body:
+        "<p>If you run a shop with a notebook, a calculator, and a lot of memory, you already know the pain. Sales get missed, stock counts do not match, and at the end of the month it is hard to say what actually made money.</p>" +
+        "<p>A point of sale system puts all of that in one place. Every sale is recorded, stock is updated as you sell, and a receipt is printed or sent automatically.</p>" +
+        "<h2>What a POS actually changes</h2>" +
+        "<ul>" +
+        "<li>Every sale is recorded, so you always know your numbers.</li>" +
+        "<li>Stock updates in real time, so you know what to reorder.</li>" +
+        "<li>Receipts are consistent and professional.</li>" +
+        "<li>Staff can sell faster with less chance of errors.</li>" +
+        "</ul>" +
+        "<h2>It pays for itself</h2>" +
+        "<p>Most shops lose more money to untracked sales and stock errors than a POS costs. Once you can see clearly what is selling and what is not, you make better decisions.</p>" +
+        "<p>We build POS systems around how your shop actually works, not a one-size-fits-all template. If you want to see one in action, get in touch.</p>"
     }
 
     // Add more posts by copying the block below and editing it.
@@ -36,7 +58,8 @@
     //   date: "2026-01-01",
     //   excerpt: "One or two sentences shown in the list.",
     //   image: "/assets/blog/post.png",
-    //   tag: "Websites"
+    //   tag: "Websites",
+    //   body: "<p>First paragraph...</p><h2>A heading</h2><p>More text...</p>"
     // }
   ];
 
@@ -114,18 +137,78 @@
     return null;
   }
 
-  M.initPostHero = function () {
-    var hero = document.querySelector("[data-post-hero]");
-    if (!hero) return;
-    var slug = hero.getAttribute("data-post-slug") || "";
+  function slugFromPath() {
+    var path = window.location.pathname || "";
+    var parts = path.split("/").filter(function (p) { return p; });
+    if (parts.length < 2 || parts[0] !== "blog") return "";
+    if (parts[parts.length - 1] === "index.html") parts.pop();
+    return parts[parts.length - 1] || "";
+  }
+
+  function setMeta(attr, name, value) {
+    if (!value) return;
+    var el = document.querySelector('meta[' + attr + '="' + name + '"]');
+    if (el) el.setAttribute("content", value);
+  }
+
+  M.initBlogPost = function () {
+    var root = document.querySelector("[data-post]");
+    if (!root) return;
+
+    var slug = root.getAttribute("data-post-slug") || slugFromPath();
     var post = findPost(slug);
-    if (!post || !post.image) return;
-    hero.innerHTML =
-      '<img src="' + M.esc(post.image) + '" alt="' + M.esc(post.title) + '" loading="lazy">';
+
+    if (!post) {
+      var title = document.querySelector("[data-post-title]");
+      if (title) title.textContent = "Post not found";
+      var body = document.querySelector("[data-post-body]");
+      if (body) body.innerHTML = '<p>Sorry, that post could not be found.</p>';
+      return;
+    }
+
+    var url = "https://micfi.net/blog/" + post.slug + "/";
+    var fullTitle = post.title + " - MicFi";
+
+    document.title = fullTitle;
+    setMeta("name", "description", post.excerpt);
+    setMeta("property", "og:title", post.title);
+    setMeta("property", "og:description", post.excerpt);
+    setMeta("property", "og:url", url);
+    if (post.image) setMeta("property", "og:image", "https://micfi.net" + post.image);
+
+    var titleNode = document.querySelector("[data-post-title]");
+    if (titleNode) titleNode.textContent = post.title;
+
+    var dateNode = document.querySelector("[data-post-date]");
+    if (dateNode) dateNode.textContent = formatDate(post.date);
+
+    var tagNode = document.querySelector("[data-post-tag]");
+    if (tagNode) {
+      if (post.tag) {
+        tagNode.textContent = post.tag;
+      } else {
+        tagNode.hidden = true;
+      }
+    }
+
+    var hero = document.querySelector("[data-post-hero]");
+    if (hero && post.image) {
+      hero.innerHTML =
+        '<img src="' + M.esc(post.image) + '" alt="' + M.esc(post.title) + '" loading="lazy">';
+    }
+
+    var bodyNode = document.querySelector("[data-post-body]");
+    if (bodyNode) bodyNode.innerHTML = post.body || "";
+
+    var share = document.querySelector("[data-blog-share]");
+    if (share) {
+      share.setAttribute("data-blog-title", post.title);
+      share.setAttribute("data-blog-url", url);
+    }
   };
 
   M.initBlogList = function () {
-    M.initPostHero();
+    M.initBlogPost();
 
     var listNode = document.querySelector("[data-blog-list]");
     var teaser = document.querySelector("[data-blog-teaser]");
