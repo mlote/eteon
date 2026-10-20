@@ -1,0 +1,331 @@
+/* =========================================================================
+   MicFi - base.css (theme, reset, typography, layout containers, buttons)
+   ========================================================================= */
+
+/* #region Fonts */
+@font-face {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 200 1000;
+  font-stretch: 75% 125%;
+  font-display: swap;
+  src: url("../assets/fonts/nunito-sans-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 200 1000;
+  font-stretch: 75% 125%;
+  font-display: swap;
+  src: url("../assets/fonts/nunito-sans-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* #endregion */
+
+:root {
+  --bg: #F7F7F8;
+  --card: #FFFFFF;
+  --field: #F2F2F3;
+  --text: #0A0A0A;
+  --muted: #5B5B60;
+  --border: rgba(0, 0, 0, 0.10);
+  --button: #1A73C8;
+  --button-hover: #1663AC;
+  --button-ink: #FFFFFF;
+  --link: #1A73C8;
+  --offer: #E0197B;
+  --highlight: #1A73C8;
+  --hover: rgba(10, 10, 10, 0.06);
+  --wa: #167C3D;
+  --brand-fb: #1877F2;
+  --brand-yt: #FF0000;
+  --brand-ink: #FFFFFF;
+  --brand-x: #000000;
+  --brand-x-ink: #FFFFFF;
+  --header-h: 56px;
+  --pad: 16px;
+  --max: 1040px;
+  --radius: 8px;
+  --bw: 0.5px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #000000;
+    --card: #0A0A0A;
+    --field: #111111;
+    --text: #FFFFFF;
+    --muted: #A1A1A1;
+    --border: rgba(255, 255, 255, 0.12);
+    --button: #3B9BEF;
+    --button-hover: #2E86D6;
+    --button-ink: #000000;
+    --link: #3B9BEF;
+    --offer: #F91880;
+    --highlight: #3B9BEF;
+    --hover: rgba(255, 255, 255, 0.08);
+    --wa: #25D366;
+    --brand-x: #FFFFFF;
+    --brand-x-ink: #000000;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #000000;
+  --card: #0A0A0A;
+  --field: #111111;
+  --text: #FFFFFF;
+  --muted: #A1A1A1;
+  --border: rgba(255, 255, 255, 0.12);
+  --button: #3B9BEF;
+  --button-hover: #2E86D6;
+  --button-ink: #000000;
+  --link: #3B9BEF;
+  --offer: #F91880;
+  --highlight: #3B9BEF;
+  --hover: rgba(255, 255, 255, 0.08);
+  --wa: #25D366;
+  --brand-x: #FFFFFF;
+  --brand-x-ink: #000000;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: calc(var(--header-h) + env(safe-area-inset-top) + 8px);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+.icon {
+  flex: none;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 700;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--pad);
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--card);
+  color: var(--link);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 700;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.section {
+  margin-bottom: 36px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 13px;
+}
+
+/* #region Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: var(--bw) solid transparent;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--button);
+  color: var(--button-ink);
+}
+
+.btn-primary:hover {
+  color: var(--button-ink);
+  background: var(--button-hover);
+}
+
+.btn-ghost {
+  background: var(--card);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.btn-ghost:hover {
+  color: var(--link);
+  border-color: var(--link);
+}
+
+.page-intro {
+  padding-top: 32px;
+  padding-bottom: 4px;
+  text-align: center;
+}
+
+.page-title,
+.section-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 23px;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.page-sub {
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--muted);
+  max-width: 50ch;
+  margin: 0 auto;
+}
+
+.section-head {
+  margin-bottom: 18px;
+}
+.row-title,
+.item-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.grid-2,
+.grid-3 {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 960px) {
+  .grid-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* #endregion */

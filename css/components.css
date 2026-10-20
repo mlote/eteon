@@ -1,0 +1,679 @@
+/* =========================================================================
+   MicFi - components.css (cards, rows, services, projects, contact, social)
+   ========================================================================= */
+
+/* #region Marquee */
+.marquee {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 26s linear infinite;
+}
+
+.marquee:hover .marquee-track,
+.marquee:active .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-group {
+  display: flex;
+  gap: 8px;
+  padding-right: 8px;
+}
+
+.marquee-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 36px;
+  padding: 0 14px;
+  background: var(--card);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  font-size: 13px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.marquee-card .icon {
+  width: 14px;
+  height: 14px;
+  color: var(--link);
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* #endregion */
+
+.card {
+  background: var(--card);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* #region Rows */
+.row-list {
+  display: grid;
+  gap: 12px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 16px;
+  background: var(--card);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+}
+
+.row-icon {
+  color: var(--link);
+  margin-top: 2px;
+}
+.row-title {
+  margin-bottom: 2px;
+}
+
+.row-text {
+  font-size: 15px;
+  color: var(--muted);
+}
+/* #endregion */
+
+/* #region Steps */
+.step-card {
+  background: var(--card);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 16px;
+  text-align: center;
+}
+
+.step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 10px;
+  background: var(--bg);
+  border: var(--bw) solid var(--border);
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--link);
+}
+
+.step-card .row-title {
+  margin-bottom: 4px;
+}
+
+.step-card .row-text {
+  margin: 0 auto;
+  max-width: 28ch;
+}
+
+/* #endregion */
+
+/* #region Services */
+.service-list {
+  display: grid;
+  gap: 12px;
+}
+
+.service-block {
+  background: var(--card);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 16px;
+}
+
+.service-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.service-head .icon {
+  color: var(--link);
+}
+
+.service-text {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 68ch;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  font-size: 13px;
+  color: var(--link);
+}
+
+/* #endregion */
+
+/* #region Projects */
+.teaser-strip {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.teaser-strip .project-card {
+  flex: 0 0 250px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+@media (max-width: 767px) {
+  .teaser-strip {
+    padding-inline: calc((100% - 250px) / 2);
+  }
+
+  .teaser-strip .project-card {
+    scroll-snap-align: center;
+  }
+}
+
+.section-link {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin: 8px auto 0;
+  padding: 0 8px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  color: var(--text);
+  transition: border-color 0.15s ease;
+}
+
+a.project-card:hover {
+  text-decoration: none;
+  border-color: var(--link);
+}
+
+.project-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  border-bottom: var(--bw) solid var(--border);
+  background-image: repeating-linear-gradient(135deg, transparent 0 9px, var(--bg) 9px 18px);
+}
+
+.thumb-mark {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--border);
+}
+
+.project-thumb-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-body {
+  padding: 14px 16px 16px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.tag-offer {
+  color: var(--offer);
+  border-color: currentColor;
+}
+
+.project-body .item-title {
+  margin-bottom: 4px;
+}
+
+/* #endregion */
+
+/* #region Call to action & text */
+.cta-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 28px 20px;
+  background: var(--card);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.cta-card h2 {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.cta-card p {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.cta-block {
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+.cta-text {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.intro-card {
+  padding: 18px 16px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.location-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.location-line .icon {
+  color: var(--link);
+}
+
+/* #endregion */
+
+/* #region Contact form */
+.form-card {
+  display: grid;
+  gap: 14px;
+  padding: 18px 16px;
+  background: var(--card);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-actions .btn {
+  gap: 8px;
+  flex: 1 1 160px;
+}
+
+.form-actions .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.field input,
+.field select,
+.field textarea {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--field);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.field select {
+  height: 44px;
+  min-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: normal;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.field textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 1px;
+  border-color: var(--link);
+}
+
+.field input[aria-invalid="true"],
+.field select[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--offer);
+}
+
+.field-error {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--offer);
+}
+
+.field-error[hidden] {
+  display: none;
+}
+
+.form-note {
+  text-align: center;
+}
+
+/* #endregion */
+
+/* #region Contact icons */
+.contact-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.contact-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  color: var(--link);
+  background: var(--field);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.contact-icons a:hover,
+.contact-icons a:focus-visible {
+  border-color: var(--muted);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.contact-icons svg {
+  width: 26px;
+  height: 26px;
+}
+
+.contact-icons .contact-icon-wa {
+  color: var(--wa);
+}
+
+.contact-icons .contact-icon-call {
+  color: var(--button);
+}
+
+.contact-icons .contact-icon-mail {
+  color: var(--link);
+}
+
+/* #endregion */
+
+/* #region Social links */
+.social-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.social-row a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius);
+  color: var(--muted);
+  transition: color 0.15s ease;
+}
+
+.social-row a svg {
+  position: relative;
+  z-index: 1;
+}
+
+.social-row a::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: var(--radius);
+  background: transparent;
+  transition: background-color 0.15s ease;
+}
+
+.social-row a:hover {
+  text-decoration: none;
+}
+
+.social-row a:hover,
+.social-row a:focus-visible {
+  color: var(--link);
+}
+
+.social-row a:hover::before,
+.social-row a:focus-visible::before {
+  background: var(--hover);
+}
+
+.social-row a[aria-label="MicFi on X"]:hover,
+.social-row a[aria-label="MicFi on X"]:focus-visible {
+  color: var(--brand-x-ink);
+}
+
+.social-row a[aria-label="MicFi on X"]:hover::before,
+.social-row a[aria-label="MicFi on X"]:focus-visible::before {
+  background: var(--brand-x);
+}
+
+.social-row a[aria-label="MicFi on Facebook"]:hover,
+.social-row a[aria-label="MicFi on Facebook"]:focus-visible {
+  color: var(--brand-ink);
+}
+
+.social-row a[aria-label="MicFi on Facebook"]:hover::before,
+.social-row a[aria-label="MicFi on Facebook"]:focus-visible::before {
+  background: var(--brand-fb);
+}
+
+.social-row a[aria-label="MicFi on YouTube"]:hover,
+.social-row a[aria-label="MicFi on YouTube"]:focus-visible {
+  color: var(--brand-ink);
+}
+
+.social-row a[aria-label="MicFi on YouTube"]:hover::before,
+.social-row a[aria-label="MicFi on YouTube"]:focus-visible::before {
+  background: var(--brand-yt);
+}
+
+/* #endregion */
+
+/* #region Pricing */
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 22px 18px;
+  position: relative;
+}
+
+.price-name {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.price-value {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--link);
+}
+
+.price-note {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.price-list {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin: 4px 0 18px;
+  font-size: 14px;
+}
+
+.price-list li {
+  position: relative;
+  padding-left: 22px;
+  line-height: 1.4;
+}
+
+.price-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 12px;
+  height: 7px;
+  border-left: 2px solid var(--link);
+  border-bottom: 2px solid var(--link);
+  transform: rotate(-45deg);
+}
+
+.pricing-card .btn {
+  margin-top: auto;
+}
+
+.price-badge {
+  position: absolute;
+  top: -10px;
+  right: 14px;
+  padding: 3px 10px;
+  background: var(--button);
+  color: var(--button-ink);
+  border-radius: var(--radius);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.price-disclaimer {
+  margin-top: 16px;
+  text-align: center;
+}
+/* #endregion */
+
+/* #region Testimonials */
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 18px;
+}
+
+.testimonial-quote {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.testimonial-person {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.testimonial-name {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.testimonial-role {
+  font-size: 13px;
+  color: var(--muted);
+}
+/* #endregion */
