@@ -17,6 +17,8 @@
     M.initHomeServices();
     M.initServices();
     M.initProjects();
+    M.initBlogList();
+    M.initBlogShare();
     M.initForm();
     M.initScrollReveal(); // keep last - it looks for everything above
   }

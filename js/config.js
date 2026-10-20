@@ -24,6 +24,7 @@ MicFi.PAGES = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services/" },
   { label: "Projects", href: "/projects/", requires: "PROJECTS" },
+  { label: "Blog", href: "/blog/", requires: "BLOG" },
   { label: "About", href: "/about/" },
   { label: "Contact", href: "/contact/" }
 ];

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>MicFi Blog</title>
+    <link>https://micfi.net/blog/</link>
+    <description>Practical notes on software, business, and getting things done.</description>
+    <language>en</language>
+    <item>
+      <title>Why your shop needs a point of sale system</title>
+      <link>https://micfi.net/blog/why-your-shop-needs-a-pos/</link>
+      <description>If you still track sales by hand, you are losing time and money. Here is what a POS changes for a growing shop.</description>
+      <pubDate>Mon, 20 Oct 2026 00:00:00 +0000</pubDate>
+      <guid>https://micfi.net/blog/why-your-shop-needs-a-pos/</guid>
+    </item>
+  </channel>
+</rss>
