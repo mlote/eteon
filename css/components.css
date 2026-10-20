@@ -448,16 +448,27 @@ a.project-card:hover {
 
 /* #region Contact details */
 .contact-details {
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .contact-details .row {
   display: block;
+  padding: 14px 12px;
+  text-align: center;
 }
 
 .contact-details .row-icon {
-  display: inline-block;
-  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  margin: 0 0 8px;
+}
+
+.contact-details .row-title {
+  margin-bottom: 4px;
+}
+
+.contact-details .row-text {
+  font-size: 14px;
 }
 
 .contact-details .row-text a {
