@@ -452,7 +452,9 @@ a.project-card:hover {
 }
 
 .contact-details .row {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 14px 12px;
   text-align: center;
 }
@@ -461,6 +463,17 @@ a.project-card:hover {
   display: flex;
   justify-content: center;
   margin: 0 0 8px;
+}
+
+@media (max-width: 639px) {
+  .contact-details {
+    justify-items: center;
+  }
+
+  .contact-details .row {
+    width: 100%;
+    max-width: 300px;
+  }
 }
 
 .contact-details .row-title {
