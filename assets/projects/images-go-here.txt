@@ -1,7 +1,0 @@
-Put your project images in this folder.
-
-Example: a file named shopsite.jpg here is used by setting
-  image: "assets/projects/shopsite.jpg"
-in the PROJECTS list inside js/projects.js.
-
-You can delete this text file any time.
