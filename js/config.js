@@ -21,11 +21,11 @@ MicFi.ADDRESS = "Kansanga, Kampala, Uganda";
    other JS files is empty (Projects hides itself while there are
    no projects in js/projects.js). */
 MicFi.PAGES = [
-  { label: "Home", href: "index.html" },
-  { label: "Services", href: "services.html" },
-  { label: "Projects", href: "projects.html", requires: "PROJECTS" },
-  { label: "About", href: "about.html" },
-  { label: "Contact", href: "contact.html" }
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services/" },
+  { label: "Projects", href: "/projects/", requires: "PROJECTS" },
+  { label: "About", href: "/about/" },
+  { label: "Contact", href: "/contact/" }
 ];
 
 /* ---- Social links ----

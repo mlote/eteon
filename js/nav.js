@@ -7,14 +7,20 @@
   "use strict";
   var M = window.MicFi;
 
-  function currentFile() {
-    var path = window.location.pathname || "";
-    var file = path.split("/").pop();
-    return file || "index.html";
+  function currentPath() {
+    var path = window.location.pathname || "/";
+    if (path.length > 1 && path.charAt(path.length - 1) !== "/") {
+      if (/\/[^/]+\.[^/]+$/.test(path)) {
+        path = path.replace(/[^/]+$/, "");
+      } else {
+        path = path + "/";
+      }
+    }
+    return path;
   }
 
   function menuHtml() {
-    var here = currentFile();
+    var here = currentPath();
     var html = "";
     for (var i = 0; i < M.PAGES.length; i++) {
       var page = M.PAGES[i];

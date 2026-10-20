@@ -5,7 +5,7 @@
      name        - project title
      type        - short tag label, e.g. "Website"
      description - one or two sentences
-     image       - optional picture, e.g. "assets/projects/shopsite.jpg"
+     image       - optional picture, e.g. "/assets/projects/shopsite.jpg"
                    leave "" to show the striped placeholder tile
      link        - optional link to the live project; leave "" if none
    To add a project, copy the example block below and edit it.
@@ -23,21 +23,21 @@
       name: "MicFi POS",
       type: "POS",
       description: "A point-of-sale system for retail shops that handles sales, stock, and receipts in one place.",
-      image: "assets/projects/pos.png",
+      image: "/assets/projects/pos.png",
       link: ""
     },
     {
       name: "MicFi HR Management System",
       type: "Management System",
       description: "An HR management system for staff records, attendance, payroll, and leave in a single place.",
-      image: "assets/projects/hr.png",
+      image: "/assets/projects/hr.png",
       link: ""
     },
     {
       name: "MicFi Business",
       type: "POS",
       description: "A point-of-sale system built for busy businesses, with fast checkout, sales tracking, and simple reporting.",
-      image: "assets/projects/business.png",
+      image: "/assets/projects/business.png",
       link: ""
     }
 

@@ -26,7 +26,7 @@
     }
 
     function syncLogos(theme) {
-      var src = theme === "dark" ? "assets/logo-dark.png" : "assets/logo-light.png";
+      var src = theme === "dark" ? "/assets/logo-dark.png" : "/assets/logo-light.png";
       var foot = document.querySelector(".footer-logo");
       if (foot && foot.getAttribute("src") !== src) {
         foot.setAttribute("src", src);
