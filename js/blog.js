@@ -24,7 +24,7 @@
       slug: "why-your-shop-needs-a-pos",
       date: "2026-10-20",
       excerpt: "If you still track sales by hand, you are losing time and money. Here is what a POS changes for a growing shop.",
-      image: "",
+      image: "/assets/blog/pos.png",
       tag: "POS"
     }
 
@@ -107,7 +107,26 @@
     target.innerHTML = html;
   }
 
+  function findPost(slug) {
+    for (var i = 0; i < POSTS.length; i++) {
+      if (POSTS[i].slug === slug) return POSTS[i];
+    }
+    return null;
+  }
+
+  M.initPostHero = function () {
+    var hero = document.querySelector("[data-post-hero]");
+    if (!hero) return;
+    var slug = hero.getAttribute("data-post-slug") || "";
+    var post = findPost(slug);
+    if (!post || !post.image) return;
+    hero.innerHTML =
+      '<img src="' + M.esc(post.image) + '" alt="' + M.esc(post.title) + '" loading="lazy">';
+  };
+
   M.initBlogList = function () {
+    M.initPostHero();
+
     var listNode = document.querySelector("[data-blog-list]");
     var teaser = document.querySelector("[data-blog-teaser]");
     var more = document.querySelector("[data-blog-more]");

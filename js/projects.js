@@ -22,7 +22,7 @@
     {
       name: "MicFi POS",
       type: "POS",
-      description: "A point-of-sale system for retail shops that handles sales, stock, and receipts in one place.",
+      description: "A point-of-sale system for shops and small retail: sales, stock, and receipts in one place.",
       image: "/assets/projects/pos.png",
       link: ""
     },
@@ -35,8 +35,8 @@
     },
     {
       name: "MicFi Business",
-      type: "POS",
-      description: "A point-of-sale system built for busy businesses, with fast checkout, sales tracking, and simple reporting.",
+      type: "Advanced POS",
+      description: "An advanced point-of-sale for large businesses such as hotels, restaurants, and big retail. Everything in MicFi POS plus multiple branches, multiple tills, user roles, and deeper reporting.",
       image: "/assets/projects/business.png",
       link: ""
     }
