@@ -446,53 +446,18 @@ a.project-card:hover {
 
 /* #endregion */
 
-/* #region Contact icons */
-.contact-icons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-}
-
-.contact-icons a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  color: var(--link);
-  background: var(--field);
-  border: var(--bw) solid var(--border);
-  border-radius: var(--radius);
-  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
-}
-
-.contact-icons a:hover,
-.contact-icons a:focus-visible {
-  border-color: var(--muted);
-  text-decoration: none;
-  transform: translateY(-2px);
-}
-
-.contact-icons svg {
-  width: 26px;
-  height: 26px;
-}
-
-.contact-icons .contact-icon-wa {
-  color: var(--wa);
-}
-
-.contact-icons .contact-icon-call {
-  color: var(--button);
-}
-
-.contact-icons .contact-icon-mail {
-  color: var(--link);
-}
-
+/* #region Contact details */
 .contact-details {
   margin-top: 20px;
+}
+
+.contact-details .row {
+  display: block;
+}
+
+.contact-details .row-icon {
+  display: inline-block;
+  margin-bottom: 8px;
 }
 
 .contact-details .row-text a {
