@@ -30,7 +30,7 @@
       name: "MicFi HR Management System",
       type: "Management System",
       description: "An HR management system for staff records, attendance, payroll, and leave in a single place.",
-      image: "/assets/projects/hr.png",
+      image: "/assets/projects/hrm.png",
       link: ""
     },
     {
