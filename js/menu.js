@@ -39,7 +39,9 @@
     });
 
     document.addEventListener("click", function (event) {
-      if (isOpen() && !event.target.closest(".site-header")) setMenu(false);
+      if (!isOpen()) return;
+      if (event.target.closest(".site-header") || event.target.closest("#site-menu")) return;
+      setMenu(false);
     });
 
     window.addEventListener("resize", function () {

@@ -102,14 +102,14 @@
 }
 
 .nav-panel {
-  position: fixed;
-  top: calc(var(--header-h) + env(safe-area-inset-top));
+  position: absolute;
+  top: 100%;
   left: 0;
   right: 0;
-  bottom: 0;
-  z-index: 55;
   background: var(--card);
   border-bottom: var(--bw) solid var(--border);
+  max-height: calc(100vh - var(--header-h));
+  max-height: calc(100dvh - var(--header-h));
   overflow-y: auto;
   overscroll-behavior: contain;
   opacity: 0;
@@ -126,32 +126,10 @@ body.menu-open .nav-panel {
   pointer-events: auto;
 }
 
-@media (max-width: 767px) {
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 54;
-    background: rgba(0, 0, 0, 0.4);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.2s ease, visibility 0.2s;
-  }
-
-  body.menu-open::after {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-}
-
 .nav-panel a {
   display: flex;
   align-items: center;
   min-height: 48px;
-  max-width: var(--max);
-  margin: 0 auto;
   padding: 0 var(--pad);
   font-size: 15px;
   color: var(--text);
