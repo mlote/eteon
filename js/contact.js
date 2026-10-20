@@ -73,20 +73,6 @@
     var note = form.querySelector("[data-form-note]");
     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    var needField = form.querySelector("#need");
-    if (needField) {
-      var match = window.location.search.match(/[?&]need=([^&]+)/);
-      if (match) {
-        var requested = decodeURIComponent(match[1]);
-        for (var i = 0; i < needField.options.length; i++) {
-          if (needField.options[i].value.toLowerCase() === requested.toLowerCase()) {
-            needField.value = needField.options[i].value;
-            break;
-          }
-        }
-      }
-    }
-
     function setError(input, errorNode, message) {
       if (message) {
         input.setAttribute("aria-invalid", "true");

@@ -23,7 +23,6 @@ MicFi.ADDRESS = "Kansanga, Kampala, Uganda";
 MicFi.PAGES = [
   { label: "Home", href: "index.html" },
   { label: "Services", href: "services.html" },
-  { label: "Pricing", href: "pricing.html" },
   { label: "Projects", href: "projects.html", requires: "PROJECTS" },
   { label: "About", href: "about.html" },
   { label: "Contact", href: "contact.html" }

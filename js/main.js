@@ -17,7 +17,6 @@
     M.initHomeServices();
     M.initServices();
     M.initProjects();
-    M.initTestimonials();
     M.initForm();
     M.initScrollReveal(); // keep last - it looks for everything above
   }
