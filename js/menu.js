@@ -19,8 +19,6 @@
       button.setAttribute("aria-expanded", open ? "true" : "false");
       button.setAttribute("aria-label", open ? "Close menu" : "Open menu");
       document.body.classList.toggle("menu-open", open);
-      document.body.style.overflow = open ? "hidden" : "";
-      document.documentElement.style.overflow = open ? "hidden" : "";
     }
 
     button.addEventListener("click", function () {
