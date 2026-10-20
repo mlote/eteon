@@ -98,20 +98,92 @@
     );
   }
 
-  M.initBlogList = function () {
-    var target = document.querySelector("[data-blog-list]");
+  function renderList(target, limit) {
     if (!target) return;
+    var list = sortedPosts();
+    var count = limit ? Math.min(limit, list.length) : list.length;
+    var html = "";
+    for (var i = 0; i < count; i++) html += postCard(list[i]);
+    target.innerHTML = html;
+  }
 
-    if (!POSTS.length) {
-      target.innerHTML = '<p class="small muted">No posts yet. Check back soon.</p>';
-      return;
+  M.initBlogList = function () {
+    var listNode = document.querySelector("[data-blog-list]");
+    var teaser = document.querySelector("[data-blog-teaser]");
+    var more = document.querySelector("[data-blog-more]");
+    var empty = !POSTS.length;
+
+    if (listNode) {
+      if (empty) {
+        listNode.innerHTML = '<p class="small muted">No posts yet. Check back soon.</p>';
+      } else {
+        renderList(listNode);
+      }
     }
 
-    var html = "";
-    var list = sortedPosts();
-    for (var i = 0; i < list.length; i++) html += postCard(list[i]);
-    target.innerHTML = html;
+    if (teaser) {
+      var section = teaser.closest("section");
+      if (empty) {
+        if (section) section.hidden = true;
+        if (more) more.hidden = true;
+      } else {
+        renderList(teaser, 3);
+      }
+    }
   };
+
+  /* Networks shown on each post's share row. Add or remove lines to change
+     which buttons appear. "kind" is web | email | copy. */
+  var SHARE_NETWORKS = [
+    { key: "x", label: "X", icon: "x", kind: "web",
+      url: function (t, u) { return "https://x.com/intent/post?text=" + encodeURIComponent(t + " - via @1micfi") + "&url=" + encodeURIComponent(u); } },
+    { key: "facebook", label: "Facebook", icon: "facebook", kind: "web",
+      url: function (t, u) { return "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(u); } },
+    { key: "whatsapp", label: "WhatsApp", icon: "whatsapp", kind: "web",
+      url: function (t, u) { return "https://wa.me/?text=" + encodeURIComponent(t + " " + u); } },
+    { key: "linkedin", label: "LinkedIn", icon: "linkedin", kind: "web",
+      url: function (t, u) { return "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(u); } },
+    { key: "email", label: "Email", icon: "mail", kind: "email",
+      url: function (t, u) { return "mailto:?subject=" + encodeURIComponent(t) + "&body=" + encodeURIComponent(u); } },
+    { key: "copy", label: "Copy link", icon: "link", kind: "copy", url: null }
+  ];
+
+  M.BLOG_SHARE_NETWORKS = SHARE_NETWORKS;
+
+  function shareButtons() {
+    var html = '<span class="share-label">Share:</span>';
+    for (var i = 0; i < SHARE_NETWORKS.length; i++) {
+      var net = SHARE_NETWORKS[i];
+      html +=
+        '<button class="share-btn" type="button" data-share-key="' + net.key + '" aria-label="Share on ' + net.label + '">' +
+        M.icon(net.icon, 16) + "<span>" + net.label + "</span></button>";
+    }
+    return html;
+  }
+
+  function copyLink(url, button) {
+    var label = button.querySelector("span");
+    var original = label ? label.textContent : "";
+    function done(ok) {
+      if (!label) return;
+      label.textContent = ok ? "Copied" : "Press Ctrl+C";
+      button.classList.add("is-copied");
+      window.setTimeout(function () {
+        label.textContent = original;
+        button.classList.remove("is-copied");
+      }, 1800);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { done(true); }, function () { done(false); });
+    } else {
+      var field = document.createElement("textarea");
+      field.value = url;
+      document.body.appendChild(field);
+      field.select();
+      try { document.execCommand("copy"); done(true); } catch (e) { done(false); }
+      document.body.removeChild(field);
+    }
+  }
 
   M.initBlogShare = function () {
     var nodes = document.querySelectorAll("[data-blog-share]");
@@ -119,17 +191,34 @@
 
     for (var i = 0; i < nodes.length; i++) {
       var node = nodes[i];
-      var title = node.getAttribute("data-blog-title") || document.title;
-      var url = node.getAttribute("data-blog-url") || window.location.href;
-      var text = title + " - via @1micfi";
-      var shareUrl =
-        "https://x.com/intent/post?text=" +
-        encodeURIComponent(text) +
-        "&url=" +
-        encodeURIComponent(url);
-      node.setAttribute("href", shareUrl);
-      node.setAttribute("target", "_blank");
-      node.setAttribute("rel", "noopener noreferrer");
+      if (!node.getAttribute("data-share-ready")) {
+        node.innerHTML = shareButtons();
+        node.setAttribute("data-share-ready", "1");
+      }
+      fillShare(node, {
+        title: node.getAttribute("data-blog-title") || document.title,
+        url: node.getAttribute("data-blog-url") || window.location.href
+      });
     }
   };
+
+  function fillShare(node, info) {
+    var buttons = node.querySelectorAll("[data-share-key]");
+    for (var i = 0; i < buttons.length; i++) {
+      (function (button) {
+        var key = button.getAttribute("data-share-key");
+        var net = null;
+        for (var n = 0; n < SHARE_NETWORKS.length; n++) {
+          if (SHARE_NETWORKS[n].key === key) { net = SHARE_NETWORKS[n]; break; }
+        }
+        if (!net) return;
+        button.onclick = function () {
+          if (net.kind === "copy") { copyLink(info.url, button); return; }
+          var target = net.url(info.title, info.url);
+          if (net.kind === "email") { window.location.href = target; return; }
+          window.open(target, "_blank", "noopener,noreferrer");
+        };
+      })(buttons[i]);
+    }
+  }
 })();

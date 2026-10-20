@@ -610,12 +610,55 @@ a.project-card:hover {
 .post-actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
   margin-top: 24px;
 }
 
 .post-actions .btn {
   gap: 8px;
+}
+
+.share-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 100%;
+}
+
+.share-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-right: 2px;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 0 12px;
+  background: var(--card);
+  border: var(--bw) solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.share-btn:hover {
+  transform: translateY(-1px);
+  color: var(--link);
+  border-color: var(--link);
+}
+
+.share-btn.is-copied {
+  color: var(--link);
+  border-color: var(--link);
 }
 
 .prose {
