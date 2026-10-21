@@ -57,6 +57,13 @@ function imagePath(post) {
   return post.image && String(post.image).trim() ? String(post.image).trim() : FALLBACK_IMAGE;
 }
 
+/* The picture people see when the post is shared. It is the link preview
+   card drawn by tools/generate-og.js, one card per post. The post's own
+   banner still shows at the top of the page. */
+function shareImagePath(post) {
+  return "/assets/og/post-" + post.slug + ".png";
+}
+
 function imageDims(relPath) {
   var file = path.join(ROOT, relPath.replace(/^\//, ""));
   if (!fs.existsSync(file)) return null;
@@ -88,7 +95,7 @@ function jsonLd(obj) {
 
 function buildStructuredData(post) {
   var url = SITE + "/blog/" + post.slug + "/";
-  var image = SITE + imagePath(post);
+  var image = SITE + shareImagePath(post);
   var desc = post.excerpt || stripHtml(post.body);
 
   var article = {
@@ -126,7 +133,7 @@ function buildStructuredData(post) {
 
 function buildMeta(post) {
   var url = SITE + "/blog/" + post.slug + "/";
-  var rel = imagePath(post);
+  var rel = shareImagePath(post);
   var image = SITE + rel;
   var desc = post.excerpt || stripHtml(post.body);
   var dims = imageDims(rel);
