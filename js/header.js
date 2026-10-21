@@ -9,14 +9,17 @@
 
   M.initHeader = function () {
     var header = document.querySelector(".site-header");
-    if (!header) return;
+    var body = document.body;
+    var revealFab = body.classList.contains("fab-reveal");
+    if (!header && !revealFab) return;
 
     var ticking = false;
 
     function update() {
       ticking = false;
-      var scrolled = window.scrollY > 8;
-      header.classList.toggle("header-scrolled", scrolled);
+      var y = window.scrollY;
+      if (header) header.classList.toggle("header-scrolled", y > 8);
+      if (revealFab) body.classList.toggle("fab-shown", y > 320);
     }
 
     function onScroll() {
