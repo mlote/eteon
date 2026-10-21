@@ -7,9 +7,34 @@
   position: sticky;
   top: 0;
   z-index: 60;
-  background: var(--card);
-  border-bottom: var(--bw) solid var(--border);
+  background: transparent;
+  border-bottom: var(--bw) solid transparent;
   padding-top: env(safe-area-inset-top);
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.site-header.header-scrolled {
+  background: var(--header-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom-color: var(--border);
+  box-shadow: 0 1px 12px rgba(10, 10, 10, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .site-header.header-scrolled {
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+  }
+}
+
+:root[data-theme="dark"] .site-header.header-scrolled {
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .site-header.header-scrolled {
+    background: var(--card);
+  }
 }
 
 .header-inner {
@@ -196,7 +221,7 @@ body.menu-open .nav-panel {
 
 /* #region Hero */
 .hero {
-  padding-top: 36px;
+  padding-top: calc(var(--header-h) + 24px);
 }
 
 .eyebrow {

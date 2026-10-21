@@ -8,6 +8,7 @@
 
   function init() {
     M.initTheme();
+    M.initHeader();
     M.initMenu();
     M.initYear();
     M.initIcons();
