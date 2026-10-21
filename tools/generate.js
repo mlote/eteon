@@ -9,5 +9,8 @@
 
 require("./generate-rss.js");
 require("./generate-posts.js");
+require("./generate-meta.js");
 require("./generate-content.js");
+require("./generate-shell.js");
+require("./generate-scripts.js");
 require("./generate-sitemap.js");

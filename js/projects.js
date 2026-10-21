@@ -118,6 +118,12 @@
     }
   }
 
+  M.projectsSubText = function (count) {
+    var n = typeof count === "number" ? count : PROJECTS.length;
+    if (!n) return "Our first projects are on the way.";
+    return (M.PROJECTS_PAGE && M.PROJECTS_PAGE.sub) || "A selection of our work.";
+  };
+
   M.initProjects = function () {
     var teaser = document.querySelector("[data-projects-teaser]");
     var grid = document.querySelector("[data-projects-grid]");
@@ -131,9 +137,7 @@
 
     var sub = document.querySelector("[data-projects-sub]");
     if (sub) {
-      sub.textContent = empty
-        ? "Our first projects are on the way."
-        : "A selection of our work.";
+      sub.textContent = M.projectsSubText();
     }
 
     if (empty) return;

@@ -100,6 +100,28 @@ function writeRegion(file, name, html, indent) {
   return true;
 }
 
+function fillElement(file, attrPattern, html) {
+  var full = path.join(ROOT, file);
+  if (!fs.existsSync(full)) {
+    console.log("SKIP (no file): " + file);
+    return false;
+  }
+
+  var source = fs.readFileSync(full, "utf8");
+  var re = new RegExp("(<(\\w+)[^>]*" + attrPattern + "[^>]*>)([\\s\\S]*?)(</\\2>)", "g");
+  var updated = source.replace(re, function (match, open, tag, inner, close) {
+    return open + html + close;
+  });
+
+  if (updated !== source) {
+    fs.writeFileSync(full, updated, "utf8");
+    console.log("Updated " + file + " [" + attrPattern + "]");
+  } else {
+    console.log("Unchanged " + file + " [" + attrPattern + "]");
+  }
+  return true;
+}
+
 var M = loadSite();
 var posts = sortedPosts(M.BLOG || []);
 var projects = M.PROJECTS || [];
@@ -167,6 +189,19 @@ if (services.length) {
   var homeSvcHtml = "";
   for (var hs = 0; hs < services.length; hs++) homeSvcHtml += M.homeServiceRow(services[hs]) + "\n";
   writeRegion("index.html", "home-services", homeSvcHtml, "        ");
+}
+
+/* ---------- Projects page: the line under the title ---------- */
+if (projects.length) {
+  fillElement(path.join("projects", "index.html"), "data-projects-sub", esc(M.projectsSubText()));
+}
+
+/* ---------- Projects page: the call to action under the grid ---------- */
+if (projects.length && M.PROJECTS_PAGE) {
+  var ctaHtml =
+    '<p class="cta-text">' + esc(M.PROJECTS_PAGE.cta) + "</p>\n" +
+    '<a class="btn btn-primary" href="/contact/">' + esc(M.PROJECTS_PAGE.ctaButton) + "</a>";
+  writeRegion(path.join("projects", "index.html"), "projects-cta", ctaHtml, "      ");
 }
 
 console.log(

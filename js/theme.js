@@ -6,6 +6,8 @@
   "use strict";
   var M = window.MicFi;
 
+  var THEME_COLORS = window.__mfTheme || { dark: "#000000", light: "#F7F7F8" };
+
   M.initTheme = function () {
     var root = document.documentElement;
     var button = document.querySelector(".theme-toggle");
@@ -34,7 +36,7 @@
     }
 
     function syncThemeColor(theme) {
-      var color = theme === "dark" ? "#000000" : "#FFFFFF";
+      var color = theme === "dark" ? THEME_COLORS.dark : THEME_COLORS.light;
       var metas = document.querySelectorAll('meta[name="theme-color"]');
       for (var i = 0; i < metas.length; i++) {
         metas[i].setAttribute("content", color);

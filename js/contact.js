@@ -14,29 +14,33 @@
     for (var i = 0; i < nodes.length; i++) nodes[i].textContent = year;
   };
 
-  M.initContactLinks = function () {
-    var waUrl =
-      "https://wa.me/" +
-      M.PHONE_NUMBER.replace(/[^0-9xX]/g, "") +
-      "?text=" +
-      encodeURIComponent(M.WHATSAPP_TEXT);
+  M.contactLinks = function () {
+    var digits = M.PHONE_NUMBER.replace(/[^0-9xX]/g, "");
+    return {
+      waUrl:
+        "https://wa.me/" + digits + "?text=" + encodeURIComponent(M.WHATSAPP_TEXT),
+      emptyWaUrl: "https://wa.me/" + digits,
+      telUrl: "tel:" + M.PHONE_NUMBER,
+      mailUrl: "mailto:" + M.CONTACT_EMAIL
+    };
+  };
 
-    var emptyWaUrl =
-      "https://wa.me/" + M.PHONE_NUMBER.replace(/[^0-9xX]/g, "");
+  M.initContactLinks = function () {
+    var links = M.contactLinks();
 
     var waLinks = document.querySelectorAll("[data-wa-link]");
     for (var i = 0; i < waLinks.length; i++) {
       var isFab = waLinks[i].classList.contains("fab-wa");
-      waLinks[i].setAttribute("href", isFab ? emptyWaUrl : waUrl);
+      waLinks[i].setAttribute("href", isFab ? links.emptyWaUrl : links.waUrl);
     }
 
     var telLinks = document.querySelectorAll("[data-tel-link]");
     for (var j = 0; j < telLinks.length; j++)
-      telLinks[j].setAttribute("href", "tel:" + M.PHONE_NUMBER);
+      telLinks[j].setAttribute("href", links.telUrl);
 
     var mailLinks = document.querySelectorAll("[data-email-link]");
     for (var k = 0; k < mailLinks.length; k++)
-      mailLinks[k].setAttribute("href", "mailto:" + M.CONTACT_EMAIL);
+      mailLinks[k].setAttribute("href", links.mailUrl);
 
     var phoneTexts = document.querySelectorAll("[data-phone-text]");
     for (var m = 0; m < phoneTexts.length; m++) phoneTexts[m].textContent = M.PHONE_NUMBER;

@@ -7,8 +7,8 @@
   "use strict";
   var M = window.MicFi;
 
-  function currentPath() {
-    var path = window.location.pathname || "/";
+  function normalizePath(pathname) {
+    var path = pathname || "/";
     if (path.length > 1 && path.charAt(path.length - 1) !== "/") {
       if (/\/[^/]+\.[^/]+$/.test(path)) {
         path = path.replace(/[^/]+$/, "");
@@ -19,8 +19,8 @@
     return path;
   }
 
-  function menuHtml() {
-    var here = currentPath();
+  function menuHtml(path) {
+    var here = normalizePath(path);
     var html = "";
     for (var i = 0; i < M.PAGES.length; i++) {
       var page = M.PAGES[i];
@@ -31,9 +31,15 @@
     return html;
   }
 
+  M.normalizePath = normalizePath;
+
+  M.menuHtml = function (path) {
+    return menuHtml(path);
+  };
+
   M.initNav = function () {
     var nodes = document.querySelectorAll("[data-nav]");
-    var html = menuHtml();
+    var html = menuHtml(window.location.pathname);
     for (var i = 0; i < nodes.length; i++) nodes[i].innerHTML = html;
   };
 
@@ -45,10 +51,7 @@
     youtube: { label: "MicFi on YouTube", icon: "youtube" }
   };
 
-  M.initSocial = function () {
-    var rows = document.querySelectorAll("[data-social-row]");
-    if (!rows.length) return;
-
+  M.socialHtml = function () {
     var html = "";
     for (var i = 0; i < SOCIAL_KEYS.length; i++) {
       var key = SOCIAL_KEYS[i];
@@ -59,6 +62,14 @@
         '<a href="' + M.esc(url) + '" aria-label="' + M.esc(item.label) + '">' +
         M.icon(item.icon, 18) + "</a>";
     }
+    return html;
+  };
+
+  M.initSocial = function () {
+    var rows = document.querySelectorAll("[data-social-row]");
+    if (!rows.length) return;
+
+    var html = M.socialHtml();
 
     for (var n = 0; n < rows.length; n++) rows[n].innerHTML = html;
   };
