@@ -18,8 +18,8 @@
      1. Add an entry below (copy an existing one and edit it).
      2. Copy the folder blog/why-your-shop-needs-a-pos to blog/<slug>.
         You do NOT edit anything inside it - the page fills itself from here.
-     3. Optionally drop an image in assets/blog/.
-     4. Run:  node tools/generate-rss.js   (updates blog/rss.xml)
+     3. Optionally drop an image in assets/blog/ (used as the share banner).
+     4. Run:  node tools/generate.js   (updates rss.xml + share tags)
    The Blog link in every menu switches itself on as soon as this list
    is not empty.
    ========================================================================= */
@@ -174,7 +174,13 @@
     setMeta("property", "og:title", post.title);
     setMeta("property", "og:description", post.excerpt);
     setMeta("property", "og:url", url);
-    if (post.image) setMeta("property", "og:image", "https://micfi.net" + post.image);
+    setMeta("name", "twitter:title", post.title);
+    setMeta("name", "twitter:description", post.excerpt);
+    if (post.image) {
+      var absImage = "https://micfi.net" + post.image;
+      setMeta("property", "og:image", absImage);
+      setMeta("name", "twitter:image", absImage);
+    }
 
     var titleNode = document.querySelector("[data-post-title]");
     if (titleNode) titleNode.textContent = post.title;
