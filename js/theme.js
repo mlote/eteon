@@ -14,7 +14,7 @@
     function current() {
       var attr = root.getAttribute("data-theme");
       if (attr === "light" || attr === "dark") return attr;
-      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      return "dark";
     }
 
     function sync() {
