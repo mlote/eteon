@@ -34,8 +34,8 @@ MicFi.PAGES = [
    Replace "#" with your real profile link. */
 MicFi.SOCIAL_LINKS = {
   x: "https://x.com/1micfi",
-  facebook: "#",
-  youtube: "#"
+  facebook: "https://www.facebook.com/micfiug",
+  youtube: "https://www.youtube.com/@1micfi"
 };
 
 /* ---- Shared helper (used by other files, no need to edit) ---- */
