@@ -21,8 +21,14 @@
       "?text=" +
       encodeURIComponent(M.WHATSAPP_TEXT);
 
+    var emptyWaUrl =
+      "https://wa.me/" + M.PHONE_NUMBER.replace(/[^0-9xX]/g, "");
+
     var waLinks = document.querySelectorAll("[data-wa-link]");
-    for (var i = 0; i < waLinks.length; i++) waLinks[i].setAttribute("href", waUrl);
+    for (var i = 0; i < waLinks.length; i++) {
+      var isFab = waLinks[i].classList.contains("fab-wa");
+      waLinks[i].setAttribute("href", isFab ? emptyWaUrl : waUrl);
+    }
 
     var telLinks = document.querySelectorAll("[data-tel-link]");
     for (var j = 0; j < telLinks.length; j++)
@@ -46,8 +52,7 @@
     var text =
       "MicFi inquiry: " + fields.need + "\n\n" +
       "Name: " + fields.name + "\n" +
-      "Email: " + fields.email + "\n" +
-      "Need: " + fields.need + "\n\n" +
+      "Email: " + fields.email + "\n\n" +
       (fields.message ? fields.message : "(No message)");
 
     if (channel === "email") {

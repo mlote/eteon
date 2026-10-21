@@ -634,6 +634,7 @@ a.project-card:hover {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   margin-top: 24px;
 }
