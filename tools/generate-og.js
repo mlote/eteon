@@ -128,7 +128,8 @@ function buildCards(M) {
 
 function cardHtml(card) {
   var font = fileUrl(path.join(ROOT, "assets", "fonts", "nunito-sans-latin.woff2"));
-  var mark = fileUrl(path.join(ROOT, "assets", "mark.png"));
+  /* Use the same stacked logo as the footer for a cleaner lockup */
+  var logo = fileUrl(path.join(ROOT, "assets", "logo-dark.png"));
 
   return [
     "<!DOCTYPE html>",
@@ -145,12 +146,11 @@ function cardHtml(card) {
     ".blob{position:absolute;border-radius:50%;pointer-events:none}",
     ".blob.a{width:560px;height:560px;top:-210px;right:-170px;background:rgba(26,115,200,.30)}",
     ".blob.b{width:300px;height:300px;bottom:-170px;left:-120px;background:rgba(224,25,123,.20)}",
-    ".brand{display:flex;align-items:center;gap:20px;position:relative}",
-    ".brand img{width:84px;height:84px;border-radius:18px;display:block}",
-    ".brand span{font-size:32px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}",
+    ".brand{position:relative}",
+    ".brand img{height:92px;width:auto;display:block}",
     ".rule{width:92px;height:6px;border-radius:3px;background:" + COLORS.accent + ";margin-top:32px}",
     ".eyebrow{margin-top:26px;font-size:24px;font-weight:800;letter-spacing:.22em;",
-    "text-transform:uppercase;color:" + COLORS.accent + ";position:relative}",
+    "text-transform:none;color:" + COLORS.accent + ";position:relative}",
     "h1{margin-top:12px;font-size:72px;font-weight:800;line-height:1.08;max-width:1010px;letter-spacing:-.01em;position:relative}",
     ".sub{margin-top:18px;font-size:29px;font-weight:500;line-height:1.35;color:" + COLORS.muted + ";max-width:930px;position:relative}",
     ".foot{margin-top:auto;padding-top:28px;display:flex;justify-content:space-between;align-items:flex-end;",
@@ -159,7 +159,7 @@ function cardHtml(card) {
     ".foot .tag{color:#6E6E78;font-weight:600}",
     "</style></head><body>",
     '<div class="blob a" data-decor="1"></div><div class="blob b" data-decor="1"></div>',
-    '<div class="brand"><img src="' + mark + '" alt=""><span>MicFi</span></div>',
+    '<div class="brand"><img src="' + logo + '" alt="MicFi"></div>',
     '<div class="rule"></div>',
     '<div class="eyebrow">' + esc(card.eyebrow) + "</div>",
     '<h1 id="title">' + esc(card.title) + "</h1>",
