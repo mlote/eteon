@@ -271,7 +271,7 @@ button {
 }
 
 .page-intro {
-  padding-top: calc(var(--header-h) + 16px);
+  padding-top: 32px;
   padding-bottom: 4px;
   text-align: center;
 }

@@ -221,7 +221,7 @@ body.menu-open .nav-panel {
 
 /* #region Hero */
 .hero {
-  padding-top: calc(var(--header-h) + 24px);
+  padding-top: 36px;
 }
 
 .eyebrow {
@@ -354,17 +354,6 @@ body.menu-open .nav-panel {
     display: inline;
     font-size: 15px;
   }
-}
-
-.fab-reveal .contact-fab {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.fab-reveal.fab-shown .contact-fab {
-  opacity: 1;
-  transform: none;
 }
 
 body.menu-open .contact-fab {
