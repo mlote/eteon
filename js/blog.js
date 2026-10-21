@@ -48,6 +48,28 @@
         "<h2>It pays for itself</h2>" +
         "<p>Most shops lose more money to untracked sales and stock errors than a POS costs. Once you can see clearly what is selling and what is not, you make better decisions.</p>" +
         "<p>We build POS systems around how your shop actually works, not a one-size-fits-all template. If you want to see one in action, get in touch.</p>"
+    },
+    {
+      title: "Why your business needs an HR management system",
+      slug: "why-your-business-needs-an-hr-system",
+      date: "2026-10-21",
+      excerpt: "Staff files in drawers and leave balances in someone's head cause disputes and slow payroll. Here is what an HR system fixes.",
+      image: "/assets/blog/hrm.png",
+      tag: "HR",
+      body:
+        "<p>Most growing businesses run HR on a mix of paper files, spreadsheets, and memory. It works until it does not. A staff contract goes missing, a leave balance is disputed, or payroll takes days because someone has to add up hours by hand.</p>" +
+        "<p>An HR management system keeps everyone's records, attendance, leave, and payroll in one place. Instead of hunting through folders, you open a screen and see the full picture.</p>" +
+        "<h2>What an HR system actually changes</h2>" +
+        "<ul>" +
+        "<li>Staff records are complete and easy to find, from contracts to contacts.</li>" +
+        "<li>Attendance is tracked, so you know who was in and when.</li>" +
+        "<li>Leave balances are clear, so there are fewer disputes.</li>" +
+        "<li>Payroll is calculated from real data, so it is faster and less error-prone.</li>" +
+        "<li>Reports are ready when you need them, not rebuilt from scratch.</li>" +
+        "</ul>" +
+        "<h2>It grows with you</h2>" +
+        "<p>What starts as a handful of staff soon becomes teams, roles, and shifts. A system keeps that organised as you grow, instead of relying on whoever happens to remember the details.</p>" +
+        "<p>We build HR systems around how your business actually runs, not a one-size-fits-all template. If you want to see one in action, get in touch.</p>"
     }
 
     // Add more posts by copying the block below and editing it.
