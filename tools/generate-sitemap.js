@@ -59,7 +59,7 @@ function build(M) {
 
   (M.PAGES || []).forEach(function (page) {
     var loc = SITE + (page.href === "/" ? "/" : page.href);
-    entries.push(urlEntry(loc, build));
+    entries.push(urlEntry(loc, ""));
   });
 
   var posts = (M.BLOG || []).slice().sort(function (a, b) {

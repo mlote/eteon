@@ -60,7 +60,7 @@
     tags += '<span class="tag">' + M.esc(project.type) + "</span>";
 
     var thumb = project.image
-      ? '<img class="project-thumb-img" src="' + M.esc(project.image) + '" alt="" loading="lazy">'
+      ? '<img class="project-thumb-img" src="' + M.esc(project.image) + '" alt="" loading="lazy" decoding="async">'
       : '<span class="thumb-mark">M</span>';
 
     var inner =
@@ -83,12 +83,34 @@
     return '<article class="project-card">' + inner + "</article>";
   }
 
+  // Shared with tools/generate-content.js so the static HTML and the
+  // client-rendered HTML stay identical. No need to edit.
+  M.projectCard = projectCard;
+
+  // The static HTML is pre-rendered by tools/generate-content.js, so the
+  // container is usually already filled. Only render when it is empty.
+  function hasContent(target) {
+    if (target.getAttribute("data-content-ready")) return true;
+    var nodes = target.childNodes;
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      if (node.nodeType !== 1) continue;
+      if (node.tagName === "SCRIPT" || node.tagName === "NOSCRIPT") continue;
+      return true;
+    }
+    return false;
+  }
+
   function renderProjects(target, limit) {
     if (!target) return;
-    var html = "";
-    var count = limit ? Math.min(limit, PROJECTS.length) : PROJECTS.length;
-    for (var i = 0; i < count; i++) html += projectCard(PROJECTS[i]);
-    target.innerHTML = html;
+
+    if (!hasContent(target)) {
+      var html = "";
+      var count = limit ? Math.min(limit, PROJECTS.length) : PROJECTS.length;
+      for (var i = 0; i < count; i++) html += projectCard(PROJECTS[i]);
+      target.innerHTML = html;
+      target.setAttribute("data-content-ready", "1");
+    }
 
     if (target.hasAttribute("data-projects-teaser")) {
       var cards = target.querySelectorAll(".project-card");

@@ -126,7 +126,7 @@
 
   function postCard(post) {
     var thumb = post.image
-      ? '<img class="post-thumb-img" src="' + M.esc(post.image) + '" alt="" loading="lazy">'
+      ? '<img class="post-thumb-img" src="' + M.esc(post.image) + '" alt="" loading="lazy" decoding="async">'
       : '<span class="thumb-mark">M</span>';
 
     var tags = post.tag ? '<div class="project-tags"><span class="tag">' + M.esc(post.tag) + "</span></div>" : "";
@@ -143,13 +143,41 @@
     );
   }
 
+  // Shared with tools/generate-content.js so the static HTML and the
+  // client-rendered HTML stay identical. No need to edit.
+  M.postCard = postCard;
+
+  M.postHero = function (post) {
+    if (!post.image) return '<span class="thumb-mark">M</span>';
+    return (
+      '<img src="' + M.esc(post.image) + '" alt="' + M.esc(post.title) +
+      '" decoding="async">'
+    );
+  };
+
+  // The static HTML is pre-rendered by tools/generate-content.js, so the
+  // container is usually already filled. Only render when it is empty.
+  function hasContent(target) {
+    if (target.getAttribute("data-content-ready")) return true;
+    var nodes = target.childNodes;
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      if (node.nodeType !== 1) continue;
+      if (node.tagName === "SCRIPT" || node.tagName === "NOSCRIPT") continue;
+      return true;
+    }
+    return false;
+  }
+
   function renderList(target, limit) {
     if (!target) return;
+    if (hasContent(target)) return;
     var list = sortedPosts();
     var count = limit ? Math.min(limit, list.length) : list.length;
     var html = "";
     for (var i = 0; i < count; i++) html += postCard(list[i]);
     target.innerHTML = html;
+    target.setAttribute("data-content-ready", "1");
   }
 
   function findPost(slug) {
@@ -205,28 +233,27 @@
     }
 
     var titleNode = document.querySelector("[data-post-title]");
-    if (titleNode) titleNode.textContent = post.title;
+    if (titleNode && !titleNode.textContent.trim()) titleNode.textContent = post.title;
 
     var dateNode = document.querySelector("[data-post-date]");
-    if (dateNode) dateNode.textContent = formatDate(post.date);
+    if (dateNode && !dateNode.textContent.trim()) dateNode.textContent = formatDate(post.date);
 
     var tagNode = document.querySelector("[data-post-tag]");
     if (tagNode) {
       if (post.tag) {
-        tagNode.textContent = post.tag;
+        if (!tagNode.textContent.trim()) tagNode.textContent = post.tag;
       } else {
         tagNode.hidden = true;
       }
     }
 
     var hero = document.querySelector("[data-post-hero]");
-    if (hero && post.image) {
-      hero.innerHTML =
-        '<img src="' + M.esc(post.image) + '" alt="' + M.esc(post.title) + '" loading="lazy">';
+    if (hero && post.image && !hero.querySelector("img")) {
+      hero.innerHTML = M.postHero(post);
     }
 
     var bodyNode = document.querySelector("[data-post-body]");
-    if (bodyNode) bodyNode.innerHTML = post.body || "";
+    if (bodyNode && !bodyNode.innerHTML.trim()) bodyNode.innerHTML = post.body || "";
 
     var share = document.querySelector("[data-blog-share]");
     if (share) {
