@@ -9,3 +9,4 @@
 
 require("./generate-rss.js");
 require("./generate-posts.js");
+require("./generate-sitemap.js");
