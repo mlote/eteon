@@ -116,7 +116,7 @@
 
     if (empty) return;
 
-    renderProjects(teaser, 5);
+    renderProjects(teaser, 3);
     renderProjects(grid, 0);
 
     var more = document.querySelector("[data-projects-more]");
