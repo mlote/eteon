@@ -1,8 +1,9 @@
 /* =========================================================================
    MicFi - tools/generate-shell.js
    Writes the shared parts of every page into the static HTML: the header
-   and footer menus, the social icons, the address, the phone number, the
-   email address, the year, and the real WhatsApp / call / email links.
+   and footer menus, the social icons, the brand line, the address, the phone
+   number, the email address, the year, and the real WhatsApp / call / email
+   links.
 
    Why this exists: those parts were built by JavaScript, so a crawler that
    does not run JavaScript (and a social app building a link preview) saw
@@ -113,6 +114,7 @@ files.forEach(function (full) {
 
   updated = fillElements(updated, 'data-nav="[^"]*"', M.menuHtml(urlPath));
   updated = fillElements(updated, "data-social-row", M.socialHtml());
+  updated = fillElements(updated, "data-brandline", M.BRAND_LINE || "");
   updated = fillElements(updated, "data-address", M.ADDRESS);
   updated = fillElements(updated, "data-phone-text", M.PHONE_NUMBER);
   updated = fillElements(updated, "data-email-text", M.CONTACT_EMAIL);

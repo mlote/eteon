@@ -14,7 +14,7 @@
    uses at runtime (M.postCard, M.projectCard, M.serviceBlock, ...), so
    the static HTML and the client-rendered HTML are identical.
 
-   Run it after adding a post, project or service:
+   Run it after adding a post, project, service or FAQ item:
        node tools/generate-content.js
    No need to edit this file.
    ========================================================================= */
@@ -175,6 +175,19 @@ if (projects.length) {
   var gridHtml = "";
   for (var g = 0; g < projects.length; g++) gridHtml += M.projectCard(projects[g]) + "\n";
   writeRegion(path.join("projects", "index.html"), "projects-grid", gridHtml, "        ");
+}
+
+/* ---------- About page: FAQ ---------- */
+if (M.FAQ && M.FAQ.length) {
+  var faqHtml = "";
+  for (var f = 0; f < M.FAQ.length; f++) {
+    faqHtml +=
+      '<article class="card faq-item">\n' +
+      '  <h3 class="row-title">' + esc(M.FAQ[f].q) + "</h3>\n" +
+      '  <p class="row-text">' + esc(M.FAQ[f].a) + "</p>\n" +
+      "</article>\n";
+  }
+  writeRegion(path.join("about", "index.html"), "faq", faqHtml, "        ");
 }
 
 /* ---------- Services page: service blocks ---------- */

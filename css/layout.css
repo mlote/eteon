@@ -475,6 +475,12 @@ body.menu-open .contact-fab {
   color: var(--link);
 }
 
+.footer-brandline {
+  max-width: 46ch;
+  margin: 0;
+  text-align: center;
+}
+
 .footer-copy {
   font-size: 13px;
   color: var(--muted);

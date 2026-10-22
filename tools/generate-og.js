@@ -164,7 +164,7 @@ function cardHtml(card) {
     '<div class="eyebrow">' + esc(card.eyebrow) + "</div>",
     '<h1 id="title">' + esc(card.title) + "</h1>",
     '<div class="sub">' + esc(card.subtitle) + "</div>",
-    '<div class="foot"><span class="dom">' + esc(card.foot) + '</span><span class="tag">Kampala, Uganda</span></div>',
+    '<div class="foot"><span class="dom">' + esc(card.foot) + '</span><span class="tag">Websites, apps &amp; systems</span></div>',
     "<script>",
     /* Shrink the headline until it fits on at most three lines, then report
        back if anything spilled outside the 1200x630 box. */

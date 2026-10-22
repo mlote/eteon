@@ -351,6 +351,28 @@ a.project-card:hover {
   line-height: 1.6;
 }
 
+.faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+.faq-item {
+  padding: 16px;
+}
+
+.faq-item .row-title {
+  margin-bottom: 4px;
+}
+
+.faq-item .row-text {
+  margin: 0;
+}
+
+.faq-cta {
+  margin-top: 14px;
+  text-align: center;
+}
+
 .location-line {
   display: flex;
   align-items: center;

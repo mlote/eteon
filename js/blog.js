@@ -70,6 +70,30 @@
         "<h2>It grows with you</h2>" +
         "<p>What starts as a handful of staff soon becomes teams, roles, and shifts. A system keeps that organised as you grow, instead of relying on whoever happens to remember the details.</p>" +
         "<p>We build HR systems around how your business actually runs, not a one-size-fits-all template. If you want to see one in action, get in touch.</p>"
+    },
+    {
+      title: "What is MicFi? A digital agency for growing businesses",
+      slug: "what-is-micfi",
+      date: "2026-10-22",
+      excerpt: "MicFi is a digital agency building websites, apps, and management systems for growing businesses.",
+      image: "/assets/og/home.png",
+      tag: "MicFi",
+      body:
+        "<p>MicFi is a digital agency that designs and builds websites, web and desktop applications, and management systems for growing businesses that want to run better and be easier to find online.</p>" +
+        "<h2>What we build</h2>" +
+        "<ul>" +
+        "<li>Websites that load fast, work on a phone, and tell people clearly what you do.</li>" +
+        "<li>Web and desktop applications for the work that spreadsheets cannot handle.</li>" +
+        "<li>Management systems such as point of sale, HR, and multi-branch retail tools.</li>" +
+        "</ul>" +
+        "<h2>Where we are</h2>" +
+        "<p>Our base is Kansanga, Kampala. We work with clients in person or remotely, whichever suits you.</p>" +
+        "<h2>How we work</h2>" +
+        "<p>We start by learning how your business actually runs. Then we agree the scope, build in short stages, and stay available after launch. No jargon and no surprise invoices.</p>" +
+        "<h2>The MicFi name</h2>" +
+        "<p>MicFi is the name we build under, and the same name you will see on our systems, from MicFi POS to MicFi HR. As the business has grown, the focus has moved to websites, applications, and management systems for shops, teams, and growing companies.</p>" +
+        "<h2>Talk to MicFi</h2>" +
+        "<p>If you need a website, an app, or a system for your business, <a href=\"/contact/\">get in touch</a>. You can also see <a href=\"/services/\">what we do</a> and the <a href=\"/projects/\">systems we are building</a>.</p>"
     }
 
     // Add more posts by copying the block below and editing it.
