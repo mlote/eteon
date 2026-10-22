@@ -331,4 +331,23 @@ button {
   }
 }
 
+/* Card grids: stay centered when they hold only a few cards, then fill
+   out into a full row once there are three or more. */
+@media (min-width: 640px) {
+  [data-blog-list],
+  [data-projects-grid] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  [data-blog-list] > *,
+  [data-projects-grid] > * {
+    flex: 1 1 260px;
+    min-width: 0;
+    max-width: 340px;
+  }
+}
+
 /* #endregion */

@@ -282,6 +282,27 @@ body.menu-open .nav-panel {
     justify-content: center;
   }
 }
+
+@media (min-width: 960px) {
+  .hero .eyebrow {
+    justify-content: center;
+  }
+
+  .hero h1,
+  .hero-text {
+    text-align: center;
+  }
+
+  .hero-text {
+    max-width: 72ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+}
 /* #endregion */
 
 /* #region Floating buttons */
@@ -347,13 +368,6 @@ body.menu-open .nav-panel {
 
 .fab-call svg {
   animation: call-ring 8s ease-in-out 4s infinite;
-}
-
-@media (min-width: 640px) {
-  .fab-label {
-    display: inline;
-    font-size: 15px;
-  }
 }
 
 body.menu-open .contact-fab {
