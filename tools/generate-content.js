@@ -182,10 +182,17 @@ if (M.FAQ && M.FAQ.length) {
   var faqHtml = "";
   for (var f = 0; f < M.FAQ.length; f++) {
     faqHtml +=
-      '<article class="card faq-item">\n' +
-      '  <h3 class="row-title">' + esc(M.FAQ[f].q) + "</h3>\n" +
-      '  <p class="row-text">' + esc(M.FAQ[f].a) + "</p>\n" +
-      "</article>\n";
+      '<div class="faq-item" data-faq-item>\n' +
+      '  <button class="faq-question" type="button" data-faq-toggle aria-expanded="false">\n' +
+      '    <span class="faq-question-text">' + esc(M.FAQ[f].q) + "</span>\n" +
+      '    <span class="faq-icon" aria-hidden="true"><span class="faq-icon-plus">+</span><span class="faq-icon-minus">-</span></span>\n' +
+      "  </button>\n" +
+      '  <div class="faq-answer" data-faq-answer>\n' +
+      '    <div class="faq-answer-inner">\n' +
+      '      <p class="row-text">' + esc(M.FAQ[f].a) + "</p>\n" +
+      "    </div>\n" +
+      "  </div>\n" +
+      "</div>\n";
   }
   writeRegion(path.join("about", "index.html"), "faq", faqHtml, "        ");
 }

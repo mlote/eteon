@@ -16,10 +16,10 @@
 
   M.contactLinks = function () {
     var digits = M.PHONE_NUMBER.replace(/[^0-9xX]/g, "");
+    var waUrl = "https://wa.me/" + digits;
     return {
-      waUrl:
-        "https://wa.me/" + digits + "?text=" + encodeURIComponent(M.WHATSAPP_TEXT),
-      emptyWaUrl: "https://wa.me/" + digits,
+      waUrl: waUrl,
+      emptyWaUrl: waUrl,
       telUrl: "tel:" + M.PHONE_NUMBER,
       mailUrl: "mailto:" + M.CONTACT_EMAIL
     };
@@ -55,22 +55,18 @@
   M.inquiryUrl = function (channel, fields) {
     if (channel === "email") {
       var emailText =
-        "MicFi inquiry: " + fields.need + "\n\n" +
-        "Name: " + fields.name + "\n" +
-        "Email: " + fields.email + "\n\n" +
+        "Name: " + fields.name + "\n\n" +
+        "Need: " + fields.need + "\n\n" +
         (fields.message ? fields.message : "(No message)");
 
       return (
         "mailto:" + M.CONTACT_EMAIL +
-        "?subject=" + encodeURIComponent("MicFi inquiry: " + fields.need) +
+        "?subject=" + encodeURIComponent(fields.need) +
         "&body=" + encodeURIComponent(emailText)
       );
     }
 
-    var waText =
-      "Hi MicFi, I'm " + fields.name + ". I'd like to talk about " + fields.need + "." +
-      "\n\nEmail: " + fields.email +
-      (fields.message ? "\n\n" + fields.message : "");
+    var waText = fields.need + (fields.message ? "\n\n" + fields.message : "");
 
     return (
       "https://wa.me/" +
@@ -88,9 +84,50 @@
     var nameError = form.querySelector("#name-error");
     var emailError = form.querySelector("#email-error");
     var note = form.querySelector("[data-form-note]");
+    var emailOnly = form.querySelector("[data-email-only]");
     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    if (emailOnly) {
+      emailOnly.hidden = true;
+    }
+
+    var waBtn = form.querySelector('[data-channel="whatsapp"]');
+    var mailBtn = form.querySelector('[data-channel="email"]');
+
+    if (waBtn) {
+      waBtn.addEventListener("click", function () {
+        if (emailOnly) {
+          emailOnly.hidden = true;
+        }
+        if (nameInput) {
+          nameInput.value = "";
+          nameInput.removeAttribute("aria-invalid");
+        }
+        if (emailInput) {
+          emailInput.value = "";
+          emailInput.removeAttribute("aria-invalid");
+        }
+        if (nameError) {
+          nameError.textContent = "";
+          nameError.hidden = true;
+        }
+        if (emailError) {
+          emailError.textContent = "";
+          emailError.hidden = true;
+        }
+      });
+    }
+
+    if (mailBtn) {
+      mailBtn.addEventListener("click", function () {
+        if (emailOnly) {
+          emailOnly.hidden = false;
+        }
+      });
+    }
+
     function setError(input, errorNode, message) {
+      if (!input || !errorNode) return;
       if (message) {
         input.setAttribute("aria-invalid", "true");
         errorNode.textContent = message;
@@ -102,50 +139,57 @@
       }
     }
 
-    nameInput.addEventListener("input", function () {
-      setError(nameInput, nameError, "");
-    });
+    if (nameInput) {
+      nameInput.addEventListener("input", function () {
+        setError(nameInput, nameError, "");
+      });
+    }
 
-    emailInput.addEventListener("input", function () {
-      setError(emailInput, emailError, "");
-    });
+    if (emailInput) {
+      emailInput.addEventListener("input", function () {
+        setError(emailInput, emailError, "");
+      });
+    }
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      var nameOk = nameInput.value.trim().length > 0;
-      var emailOk = emailPattern.test(emailInput.value.trim());
+      var channel =
+        (event.submitter && event.submitter.getAttribute("data-channel")) ||
+        "whatsapp";
+      var isEmail = channel === "email";
+      var emailFieldsVisible = isEmail && emailOnly && !emailOnly.hidden;
+
+      var nameOk = !emailFieldsVisible || (nameInput && nameInput.value.trim().length > 0);
+      var emailOk = !emailFieldsVisible || (emailInput && emailPattern.test(emailInput.value.trim()));
 
       setError(
         nameInput,
         nameError,
-        nameOk ? "" : "Please enter your name."
+        emailFieldsVisible && !nameOk ? "Please enter your name." : ""
       );
       setError(
         emailInput,
         emailError,
-        emailOk ? "" : "Please enter a valid email address."
+        emailFieldsVisible && !emailOk ? "Please enter a valid email address." : ""
       );
 
-      if (!nameOk) {
+      if (emailFieldsVisible && !nameOk && nameInput) {
         nameInput.focus();
         return;
       }
-      if (!emailOk) {
+      if (emailFieldsVisible && !emailOk && emailInput) {
         emailInput.focus();
         return;
       }
 
       var fields = {
-        name: nameInput.value.trim(),
-        email: emailInput.value.trim(),
+        name: nameInput ? nameInput.value.trim() : "",
+        email: emailInput ? emailInput.value.trim() : "",
         need: form.querySelector("#need").value,
         message: form.querySelector("#message").value.trim()
       };
 
-      var channel =
-        (event.submitter && event.submitter.getAttribute("data-channel")) ||
-        "whatsapp";
       var url = M.inquiryUrl(channel, fields);
 
       if (note) {

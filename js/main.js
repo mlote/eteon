@@ -21,6 +21,7 @@
     M.initBlogList();
     M.initBlogShare();
     M.initForm();
+    if (typeof M.initFaq === "function") M.initFaq();
     M.initScrollReveal(); // keep last - it looks for everything above
   }
 

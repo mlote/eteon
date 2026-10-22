@@ -128,8 +128,8 @@ function buildCards(M) {
 
 function cardHtml(card) {
   var font = fileUrl(path.join(ROOT, "assets", "fonts", "nunito-sans-latin.woff2"));
-  /* Use the same stacked logo as the footer for a cleaner lockup */
-  var logo = fileUrl(path.join(ROOT, "assets", "logo-dark.png"));
+  /* Use the MicFi mark/logo alone on cards */
+  var logo = fileUrl(path.join(ROOT, "assets", "mark.png"));
 
   return [
     "<!DOCTYPE html>",
@@ -147,9 +147,9 @@ function cardHtml(card) {
     ".blob.a{width:560px;height:560px;top:-210px;right:-170px;background:rgba(26,115,200,.30)}",
     ".blob.b{width:300px;height:300px;bottom:-170px;left:-120px;background:rgba(224,25,123,.20)}",
     ".brand{position:relative}",
-    ".brand img{height:92px;width:auto;display:block}",
-    ".rule{width:92px;height:6px;border-radius:3px;background:" + COLORS.accent + ";margin-top:32px}",
-    ".eyebrow{margin-top:26px;font-size:24px;font-weight:800;letter-spacing:.22em;",
+    ".brand img{height:76px;width:auto;display:block}",
+    ".rule{width:92px;height:6px;border-radius:3px;background:" + COLORS.accent + ";margin-top:28px}",
+    ".eyebrow{margin-top:24px;font-size:24px;font-weight:800;letter-spacing:.22em;",
     "text-transform:none;color:" + COLORS.accent + ";position:relative}",
     "h1{margin-top:12px;font-size:72px;font-weight:800;line-height:1.08;max-width:1010px;letter-spacing:-.01em;position:relative}",
     ".sub{margin-top:18px;font-size:29px;font-weight:500;line-height:1.35;color:" + COLORS.muted + ";max-width:930px;position:relative}",

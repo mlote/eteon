@@ -9,7 +9,6 @@ window.MicFi = window.MicFi || {};
 /* ---- Contact details ---- */
 MicFi.PHONE_NUMBER = "+256762451545"; // full number with country code, e.g. "+256771234567"
 MicFi.CONTACT_EMAIL = "info@micfi.net"; // where contact form inquiries are sent
-MicFi.WHATSAPP_TEXT = "Hi MicFi, I'd like to discuss a project."; // pre-filled WhatsApp message
 
 /* ---- Location / address ---- */
 MicFi.ADDRESS = "Kansanga, Kampala, Uganda";

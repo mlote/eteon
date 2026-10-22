@@ -82,15 +82,17 @@
     <section class="section container">
       <h2 class="sr-only">Send an inquiry</h2>
       <form class="form-card" data-contact-form novalidate>
-        <div class="field">
-          <label for="name">Name</label>
-          <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required aria-required="true" aria-describedby="name-error">
-          <p class="field-error" id="name-error" hidden></p>
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@business.com" required aria-required="true" aria-describedby="email-error">
-          <p class="field-error" id="email-error" hidden></p>
+        <div data-email-only hidden>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" aria-describedby="name-error">
+            <p class="field-error" id="name-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@business.com" aria-describedby="email-error">
+            <p class="field-error" id="email-error" hidden></p>
+          </div>
         </div>
         <div class="field">
           <label for="need">What do you need?</label>
