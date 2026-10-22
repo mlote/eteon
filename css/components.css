@@ -354,11 +354,14 @@ a.project-card:hover {
 .faq-list {
   display: grid;
   gap: 12px;
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .faq-item {
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  border: var(--bw) solid var(--border);
   background: var(--card);
   box-shadow: var(--shadow);
   overflow: hidden;

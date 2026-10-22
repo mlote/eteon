@@ -13,21 +13,25 @@
     for (var i = 0; i < items.length; i++) {
       var item = items[i];
       var toggle = item.querySelector("[data-faq-toggle]");
-      var answer = item.querySelector("[data-faq-answer]");
-      if (!toggle || !answer) continue;
+      if (!toggle) continue;
 
-      toggle.addEventListener("click", function (el, a) {
+      toggle.addEventListener("click", function (el) {
         return function () {
-          var isOpen = el.parentNode.classList.contains("is-open");
-          if (isOpen) {
-            el.parentNode.classList.remove("is-open");
-            el.setAttribute("aria-expanded", "false");
-          } else {
-            el.parentNode.classList.add("is-open");
+          var parent = el.parentNode;
+          var isOpen = parent.classList.contains("is-open");
+
+          for (var j = 0; j < items.length; j++) {
+            items[j].classList.remove("is-open");
+            var t = items[j].querySelector("[data-faq-toggle]");
+            if (t) t.setAttribute("aria-expanded", "false");
+          }
+
+          if (!isOpen) {
+            parent.classList.add("is-open");
             el.setAttribute("aria-expanded", "true");
           }
         };
-      }(toggle, answer));
+      }(toggle));
     }
   };
 })();
