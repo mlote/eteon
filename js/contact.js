@@ -53,24 +53,29 @@
   };
 
   M.inquiryUrl = function (channel, fields) {
-    var text =
-      "MicFi inquiry: " + fields.need + "\n\n" +
-      "Name: " + fields.name + "\n" +
-      "Email: " + fields.email + "\n\n" +
-      (fields.message ? fields.message : "(No message)");
-
     if (channel === "email") {
+      var emailText =
+        "MicFi inquiry: " + fields.need + "\n\n" +
+        "Name: " + fields.name + "\n" +
+        "Email: " + fields.email + "\n\n" +
+        (fields.message ? fields.message : "(No message)");
+
       return (
         "mailto:" + M.CONTACT_EMAIL +
         "?subject=" + encodeURIComponent("MicFi inquiry: " + fields.need) +
-        "&body=" + encodeURIComponent(text)
+        "&body=" + encodeURIComponent(emailText)
       );
     }
+
+    var waText =
+      "Hi MicFi, I'm " + fields.name + ". I'd like to talk about " + fields.need + "." +
+      "\n\nEmail: " + fields.email +
+      (fields.message ? "\n\n" + fields.message : "");
 
     return (
       "https://wa.me/" +
       M.PHONE_NUMBER.replace(/[^0-9xX]/g, "") +
-      "?text=" + encodeURIComponent(text)
+      "?text=" + encodeURIComponent(waText)
     );
   };
 
