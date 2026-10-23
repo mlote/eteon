@@ -24,7 +24,7 @@
       type: "POS",
       description: "A point-of-sale system for shops and small retail: sales, stock, and receipts in one place.",
       image: "/assets/projects/pos.png",
-      link: "https://micfi.net"
+      link: ""
     },
     {
       name: "MicFi HR Management System",
@@ -34,10 +34,10 @@
       link: ""
     },
     {
-      name: "MicFi Business",
-      type: "Advanced POS",
-      description: "An advanced point-of-sale for large businesses such as hotels, restaurants, and big retail. Everything in MicFi POS plus multiple branches, multiple tills, user roles, and deeper reporting.",
-      image: "/assets/projects/business.png",
+      name: "Hotspot WIFI billing system",
+      type: "Billing System",
+      description: "Track sales on how your hotspot is operating, Accept MOMO, see vourcher distribution, sms alerst and more..",
+      image: "/assets/projects/wifi.png",
       link: ""
     }
 
