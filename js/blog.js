@@ -55,7 +55,7 @@
       date: "2026-10-21",
       excerpt: "Staff files in drawers and leave balances in someone's head cause disputes and slow payroll. Here is what an HR system fixes.",
       image: "/assets/blog/hrm.png",
-      tag: "HR Magament System",
+      tag: "HRMS",
       body:
         "<p>Most growing businesses run HR on a mix of paper files, spreadsheets, and memory. It works until it does not. A staff contract goes missing, a leave balance is disputed, or payroll takes days because someone has to add up hours by hand.</p>" +
         "<p>An HR management system keeps everyone's records, attendance, leave, and payroll in one place. Instead of hunting through folders, you open a screen and see the full picture.</p>" +
