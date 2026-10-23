@@ -50,12 +50,12 @@
         "<p>We build POS systems around how your shop actually works, not a one-size-fits-all template. If you want to see one in action, get in touch.</p>"
     },
     {
-      title: "Why your business needs an HR management system",
-      slug: "why-your-business-needs-an-hr-system",
+      title: "Human Resource management system",
+      slug: "manage-empoyees-in-company",
       date: "2026-10-21",
       excerpt: "Staff files in drawers and leave balances in someone's head cause disputes and slow payroll. Here is what an HR system fixes.",
       image: "/assets/blog/hrm.png",
-      tag: "HR",
+      tag: "HR Magament System",
       body:
         "<p>Most growing businesses run HR on a mix of paper files, spreadsheets, and memory. It works until it does not. A staff contract goes missing, a leave balance is disputed, or payroll takes days because someone has to add up hours by hand.</p>" +
         "<p>An HR management system keeps everyone's records, attendance, leave, and payroll in one place. Instead of hunting through folders, you open a screen and see the full picture.</p>" +
