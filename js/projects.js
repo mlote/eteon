@@ -24,7 +24,7 @@
       type: "POS",
       description: "A point-of-sale system for shops and small retail: sales, stock, and receipts in one place.",
       image: "/assets/projects/pos.png",
-      link: ""
+      link: "https://micfi.net"
     },
     {
       name: "MicFi HR Management System",
