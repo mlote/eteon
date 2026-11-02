@@ -282,22 +282,22 @@ body.menu-open .nav-panel {
 
 @media (min-width: 960px) {
   .hero .eyebrow {
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .hero h1,
   .hero-text {
-    text-align: left;
+    text-align: center;
   }
 
   .hero-text {
-    max-width: 60ch;
-    margin-left: 0;
+    max-width: 72ch;
+    margin-left: auto;
     margin-right: auto;
   }
 
   .hero-actions {
-    justify-content: flex-start;
+    justify-content: center;
   }
 }
 /* #endregion */
@@ -367,33 +367,32 @@ body.menu-open .contact-fab {
 /* #region Footer */
 .site-footer {
   flex: none;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-top: 56px;
-  padding: 32px var(--pad) 28px;
+  gap: 14px;
+  margin-top: 40px;
+  padding: 30px var(--pad) 28px;
   border-top: var(--bw) solid var(--border);
   text-align: center;
 }
 
 .footer-logo {
   display: block;
-  height: 40px;
+  height: 56px;
   width: auto;
-  margin: 0 auto;
 }
 
 .footer-brand {
   display: inline-flex;
-  justify-content: center;
+  border-radius: var(--radius);
 }
 
 .footer-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 4px 16px;
+  gap: 4px 14px;
 }
 
 .footer-links a {
@@ -408,8 +407,8 @@ body.menu-open .contact-fab {
 }
 
 .footer-brandline {
-  max-width: 52ch;
-  margin: 0 auto;
+  max-width: 46ch;
+  margin: 0;
   text-align: center;
 }
 
@@ -431,32 +430,6 @@ body.menu-open .contact-fab {
 
 .footer-address a:hover {
   text-decoration: none;
-}
-
-@media (min-width: 768px) {
-  .site-footer {
-    grid-template-columns: auto 1fr auto;
-    text-align: left;
-  }
-
-  .footer-logo {
-    margin: 0;
-  }
-
-  .footer-brand {
-    justify-content: flex-start;
-  }
-
-  .footer-links {
-    justify-content: center;
-  }
-
-  .footer-brandline,
-  .footer-address,
-  .footer-copy {
-    grid-column: 1 / -1;
-    text-align: center;
-  }
 }
 
 .page-home .site-footer {

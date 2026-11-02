@@ -292,7 +292,7 @@ button {
 .page-intro {
   padding-top: 40px;
   padding-bottom: 8px;
-  text-align: left;
+  text-align: center;
 }
 
 .page-title,
@@ -301,7 +301,7 @@ button {
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
-  text-align: left;
+  text-align: center;
 }
 
 .page-title {
@@ -313,8 +313,8 @@ button {
   font-size: 16px;
   line-height: 1.5;
   color: var(--muted);
-  max-width: 60ch;
-  margin: 0;
+  max-width: 50ch;
+  margin: 0 auto;
 }
 
 .section-head {
