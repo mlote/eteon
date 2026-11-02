@@ -18,8 +18,8 @@ MicFi.ADDRESS = "Kansanga, Kampala, Uganda";
    search engines understand who MicFi is and where it is based. */
 MicFi.BRAND_NAME = "MicFi";
 MicFi.BRAND_ALTERNATE = ["MicFi Digital", "MicFi Uganda"];
-MicFi.BRAND_LINE = "MicFi is a digital agency building websites, apps, and management systems.";
-MicFi.BRAND_DESCRIPTION = "MicFi is a digital agency building websites, apps, and management systems for growing businesses.";
+MicFi.BRAND_LINE = "MicFi is a digital agency building websites, apps and management systems.";
+MicFi.BRAND_DESCRIPTION = "MicFi is a digital agency building Websites, apps and management systems for growing businesses.";
 
 /* ---- Menu links ----
    Comment out a line with // to hide that page from every menu.
@@ -51,7 +51,7 @@ MicFi.SOCIAL_LINKS = {
 MicFi.FAQ = [
   {
     q: "What is MicFi?",
-    a: "MicFi is a digital agency that designs and builds websites, apps, and management systems for growing businesses."
+    a: "MicFi is a digital agency that designs and builds Websites, apps and management systems for growing businesses."
   },
   {
     q: "Where is MicFi located?",
@@ -104,10 +104,10 @@ MicFi.PAGE_META = {
   "/": {
     file: "index.html",
     title: "MicFi | Digital Agency for Websites, Apps & Systems",
-    description: "MicFi is a digital agency building websites, apps, and management systems for growing businesses.",
+    description: "MicFi is a digital agency building Websites, apps and management systems for growing businesses.",
     ogTitle: "Digital solutions built for your business",
     ogEyebrow: "MicFi",
-    ogDescription: "Websites, apps, and management systems for growing businesses.",
+    ogDescription: "Websites, apps and management systems for growing businesses.",
     ogImage: "/assets/og/home.png"
   },
   "/about/": {
@@ -116,7 +116,7 @@ MicFi.PAGE_META = {
     description: "MicFi designs and builds websites, applications, and management systems for growing businesses. Practical digital work, shaped around how you operate.",
     ogTitle: "A digital agency for growing businesses",
     ogEyebrow: "About",
-    ogDescription: "Websites, apps, and management systems, built around how your business works.",
+    ogDescription: "Websites, apps and management systems, built around how your business works.",
     ogImage: "/assets/og/about.png"
   },
   "/blog/": {
