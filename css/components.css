@@ -101,7 +101,7 @@
   border: var(--bw) solid var(--border);
   border-radius: var(--radius);
   padding: 20px 16px;
-  text-align: left;
+  text-align: center;
 }
 
 .step-num {
@@ -110,7 +110,7 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  margin: 0 0 10px;
+  margin: 0 auto 10px;
   background: var(--bg);
   border: var(--bw) solid var(--border);
   border-radius: 50%;
@@ -124,8 +124,8 @@
 }
 
 .step-card .row-text {
-  margin: 0;
-  max-width: none;
+  margin: 0 auto;
+  max-width: 28ch;
 }
 
 /* #endregion */
