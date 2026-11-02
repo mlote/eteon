@@ -4,17 +4,17 @@
    social crawlers and any visitor without JavaScript can read the real
    content of every page.
 
-   Why this exists: the site builds its lists (blog posts, projects,
+   Why this exists: the site builds its lists (blog posts, products,
    services, home teasers) with JavaScript. Crawlers that do not run
    JavaScript would see empty pages, and crawlers that do run it have to
    render before they can index the content. Pre-rendering the same markup
    into the HTML fixes both.
 
    The markup is produced by the very same template functions the site
-   uses at runtime (M.postCard, M.projectCard, M.serviceBlock, ...), so
+   uses at runtime (M.postCard, M.productCard, M.serviceBlock, ...), so
    the static HTML and the client-rendered HTML are identical.
 
-   Run it after adding a post, project, service or FAQ item:
+   Run it after adding a post, product, service or FAQ item:
        node tools/generate-content.js
    No need to edit this file.
    ========================================================================= */
@@ -38,7 +38,7 @@ function loadSite() {
   sandbox.navigator = { share: null, clipboard: null };
   vm.createContext(sandbox);
 
-  ["js/config.js", "js/icons.js", "js/blog.js", "js/projects.js", "js/services.js"].forEach(function (file) {
+  ["js/config.js", "js/icons.js", "js/blog.js", "js/products.js", "js/services.js"].forEach(function (file) {
     var code = fs.readFileSync(path.join(ROOT, file), "utf8");
     vm.runInContext(code, sandbox, { filename: file });
   });
@@ -124,7 +124,7 @@ function fillElement(file, attrPattern, html) {
 
 var M = loadSite();
 var posts = sortedPosts(M.BLOG || []);
-var projects = M.PROJECTS || [];
+var products = M.PRODUCTS || [];
 var services = M.SERVICES || [];
 
 /* ---------- Blog post pages: title, date, tag, hero, body ---------- */
@@ -157,24 +157,24 @@ if (posts.length) {
   writeRegion(path.join("blog", "index.html"), "blog-list", listHtml, "        ");
 }
 
-/* ---------- Home page: blog teaser + projects teaser ---------- */
+/* ---------- Home page: blog teaser + products teaser ---------- */
 if (posts.length) {
   var teaserHtml = "";
   for (var t = 0; t < Math.min(3, posts.length); t++) teaserHtml += M.postCard(posts[t]) + "\n";
   writeRegion("index.html", "blog-teaser", teaserHtml, "        ");
 }
 
-if (projects.length) {
-  var projHtml = "";
-  for (var p = 0; p < Math.min(3, projects.length); p++) projHtml += M.projectCard(projects[p]) + "\n";
-  writeRegion("index.html", "projects-teaser", projHtml, "        ");
+if (products.length) {
+  var prodHtml = "";
+  for (var p = 0; p < Math.min(3, products.length); p++) prodHtml += M.productCard(products[p]) + "\n";
+  writeRegion("index.html", "products-teaser", prodHtml, "        ");
 }
 
-/* ---------- Projects page: project cards ---------- */
-if (projects.length) {
+/* ---------- Products page: product cards ---------- */
+if (products.length) {
   var gridHtml = "";
-  for (var g = 0; g < projects.length; g++) gridHtml += M.projectCard(projects[g]) + "\n";
-  writeRegion(path.join("projects", "index.html"), "projects-grid", gridHtml, "        ");
+  for (var g = 0; g < products.length; g++) gridHtml += M.productCard(products[g]) + "\n";
+  writeRegion(path.join("products", "index.html"), "products-grid", gridHtml, "        ");
 }
 
 /* ---------- About page: FAQ ---------- */
@@ -211,20 +211,20 @@ if (services.length) {
   writeRegion("index.html", "home-services", homeSvcHtml, "        ");
 }
 
-/* ---------- Projects page: the line under the title ---------- */
-if (projects.length) {
-  fillElement(path.join("projects", "index.html"), "data-projects-sub", esc(M.projectsSubText()));
+/* ---------- Products page: the line under the title ---------- */
+if (products.length) {
+  fillElement(path.join("products", "index.html"), "data-products-sub", esc(M.productsSubText()));
 }
 
-/* ---------- Projects page: the call to action under the grid ---------- */
-if (projects.length && M.PROJECTS_PAGE) {
+/* ---------- Products page: the call to action under the grid ---------- */
+if (products.length && M.PRODUCTS_PAGE) {
   var ctaHtml =
-    '<p class="cta-text">' + esc(M.PROJECTS_PAGE.cta) + "</p>\n" +
-    '<a class="btn btn-primary" href="/contact/">' + esc(M.PROJECTS_PAGE.ctaButton) + "</a>";
-  writeRegion(path.join("projects", "index.html"), "projects-cta", ctaHtml, "      ");
+    '<p class="cta-text">' + esc(M.PRODUCTS_PAGE.cta) + "</p>\n" +
+    '<a class="btn btn-primary" href="/contact/">' + esc(M.PRODUCTS_PAGE.ctaButton) + "</a>";
+  writeRegion(path.join("products", "index.html"), "products-cta", ctaHtml, "      ");
 }
 
 console.log(
-  "Done. " + posts.length + " post(s), " + projects.length + " project(s), " +
+  "Done. " + posts.length + " post(s), " + products.length + " product(s), " +
   services.length + " service(s) processed."
 );

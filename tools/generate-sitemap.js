@@ -23,7 +23,7 @@ function loadSite() {
   sandbox.MicFi = {};
   vm.createContext(sandbox);
 
-  ["js/config.js", "js/blog.js", "js/projects.js"].forEach(function (file) {
+  ["js/config.js", "js/blog.js", "js/products.js"].forEach(function (file) {
     var code = fs.readFileSync(path.join(ROOT, file), "utf8");
     vm.runInContext(code, sandbox, { filename: file });
   });

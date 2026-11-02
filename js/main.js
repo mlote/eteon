@@ -17,7 +17,7 @@
     M.initNav();
     M.initHomeServices();
     M.initServices();
-    M.initProjects();
+    M.initProducts();
     M.initBlogList();
     M.initBlogShare();
     M.initForm();

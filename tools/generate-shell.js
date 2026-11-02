@@ -38,9 +38,9 @@ function loadSite() {
   sandbox.location = { pathname: "/" };
   vm.createContext(sandbox);
 
-  // blog.js, projects.js and services.js are needed because the menu hides
-  // a page while the list behind it is empty (Blog, Projects).
-  ["js/config.js", "js/icons.js", "js/blog.js", "js/projects.js", "js/services.js", "js/nav.js", "js/contact.js"].forEach(function (file) {
+  // blog.js, products.js and services.js are needed because the menu hides
+  // a page while the list behind it is empty (Blog, Products).
+  ["js/config.js", "js/icons.js", "js/blog.js", "js/products.js", "js/services.js", "js/nav.js", "js/contact.js"].forEach(function (file) {
     var code = fs.readFileSync(path.join(ROOT, file), "utf8");
     vm.runInContext(code, sandbox, { filename: file });
   });

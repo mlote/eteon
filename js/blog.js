@@ -126,15 +126,15 @@
 
   function postCard(post) {
     var thumb = post.image
-      ? '<img class="post-thumb-img" src="' + M.esc(post.image) + '" alt="" loading="lazy" decoding="async">'
+      ? '<img class="media-thumb-img" src="' + M.esc(post.image) + '" alt="" loading="lazy" decoding="async">'
       : '<span class="thumb-mark">M</span>';
 
-    var tags = post.tag ? '<div class="project-tags"><span class="tag">' + M.esc(post.tag) + "</span></div>" : "";
+    var tags = post.tag ? '<div class="media-tags"><span class="tag">' + M.esc(post.tag) + "</span></div>" : "";
 
     return (
-      '<a class="project-card post-card reveal" href="/blog/' + M.esc(post.slug) + '/">' +
-      '<div class="project-thumb" aria-hidden="true">' + thumb + "</div>" +
-      '<div class="project-body">' +
+      '<a class="media-card post-card reveal" href="/blog/' + M.esc(post.slug) + '/">' +
+      '<div class="media-thumb" aria-hidden="true">' + thumb + "</div>" +
+      '<div class="media-body">' +
       tags +
       '<p class="post-date small muted">' + M.esc(formatDate(post.date)) + "</p>" +
       '<h3 class="item-title">' + M.esc(post.title) + "</h3>" +

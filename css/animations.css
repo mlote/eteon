@@ -36,25 +36,25 @@
 
 .reveal-ready .row-list .row:nth-child(2),
 .reveal-ready .grid-2 .step-card:nth-child(2),
-.reveal-ready .teaser-strip .project-card:nth-child(2) {
+.reveal-ready .teaser-strip .media-card:nth-child(2) {
   --d: 0.06s;
 }
 
 .reveal-ready .row-list .row:nth-child(3),
 .reveal-ready .grid-2 .step-card:nth-child(3),
-.reveal-ready .teaser-strip .project-card:nth-child(3) {
+.reveal-ready .teaser-strip .media-card:nth-child(3) {
   --d: 0.12s;
 }
 
 .reveal-ready .row-list .row:nth-child(4),
 .reveal-ready .grid-2 .step-card:nth-child(4),
-.reveal-ready .teaser-strip .project-card:nth-child(4) {
+.reveal-ready .teaser-strip .media-card:nth-child(4) {
   --d: 0.18s;
 }
 
 .reveal-ready .row-list .row:nth-child(5),
 .reveal-ready .grid-2 .step-card:nth-child(5),
-.reveal-ready .teaser-strip .project-card:nth-child(5) {
+.reveal-ready .teaser-strip .media-card:nth-child(5) {
   --d: 0.24s;
 }
 

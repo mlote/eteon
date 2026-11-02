@@ -25,12 +25,12 @@ MicFi.BRAND_DESCRIPTION = "MicFi is a digital agency building websites, apps, an
    Comment out a line with // to hide that page from every menu.
    Add a line to add a new page.
    A line with "requires" also hides itself while that list in the
-   other JS files is empty (Projects hides itself while there are
-   no projects in js/projects.js). */
+   other JS files is empty (Products hides itself while there are
+   no products in js/products.js). */
 MicFi.PAGES = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services/" },
-  { label: "Projects", href: "/projects/", requires: "PROJECTS" },
+  { label: "Products", href: "/products/", requires: "PRODUCTS" },
   { label: "Blog", href: "/blog/", requires: "BLOG" },
   { label: "About", href: "/about/" },
   { label: "Contact", href: "/contact/" }
@@ -72,12 +72,12 @@ MicFi.FAQ = [
    Leave it empty and no analytics script loads at all. */
 MicFi.GA4_ID = "";
 
-/* ---- Projects page text ----
-   The line under the page title and the call to action under the project
+/* ---- Products page text ----
+   The line under the page title and the call to action under the product
    grid. Edit here and the page, its meta tags and the snippet people see
    in Google all change together. */
-MicFi.PROJECTS_PAGE = {
-  sub: "Point-of-sale and management systems we're building for shops and teams.",
+MicFi.PRODUCTS_PAGE = {
+  sub: "Point-of-sale, HR, and billing systems we build for shops and teams.",
   cta: "Want one of these for your business? Tell us what you need.",
   ctaButton: "Start a conversation"
 };
@@ -137,14 +137,14 @@ MicFi.PAGE_META = {
     ogDescription: "Tell us what you need and we'll reply.",
     ogImage: "/assets/og/contact.png"
   },
-  "/projects/": {
-    file: "projects/index.html",
-    title: "Projects | MicFi POS, HR and Business Systems",
-    description: "The systems MicFi is building: MicFi POS for shops, MicFi HR for staff records and payroll, and MicFi Business for multi-branch retail.",
-    ogTitle: "Systems we're building for shops and teams",
-    ogEyebrow: "Projects",
-    ogDescription: "MicFi POS for shops, MicFi HR for staff and payroll, and MicFi Business for multi-branch retail.",
-    ogImage: "/assets/og/projects.png"
+  "/products/": {
+    file: "products/index.html",
+    title: "Products | MicFi POS, HR and Hotspot Systems",
+    description: "The products MicFi builds: MicFi POS for shops, MicFi HR for staff records and payroll, and a hotspot WiFi billing system.",
+    ogTitle: "Products built for shops and teams",
+    ogEyebrow: "Products",
+    ogDescription: "MicFi POS for shops, MicFi HR for staff and payroll, and a hotspot WiFi billing system.",
+    ogImage: "/assets/og/products.png"
   },
   "/services/": {
     file: "services/index.html",

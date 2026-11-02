@@ -335,7 +335,7 @@ button {
    out into a full row once there are three or more. */
 @media (min-width: 640px) {
   [data-blog-list],
-  [data-projects-grid] {
+  [data-products-grid] {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -343,7 +343,7 @@ button {
   }
 
   [data-blog-list] > *,
-  [data-projects-grid] > * {
+  [data-products-grid] > * {
     flex: 1 1 260px;
     min-width: 0;
     max-width: 340px;
