@@ -139,11 +139,11 @@ MicFi.PAGE_META = {
   },
   "/products/": {
     file: "products/index.html",
-    title: "Products | MicFi POS, HR and Hotspot Systems",
-    description: "The products MicFi builds: MicFi POS for shops, MicFi HR for staff records and payroll, and a hotspot WiFi billing system.",
+    title: "Products | THAM POS, THAM MGT and MicFi",
+    description: "The products MicFi builds: THAM POS for shops, THAM MGT for staff records and payroll, and MicFi for hotspot WiFi billing.",
     ogTitle: "Products built for shops and teams",
     ogEyebrow: "Products",
-    ogDescription: "MicFi POS for shops, MicFi HR for staff and payroll, and a hotspot WiFi billing system.",
+    ogDescription: "THAM POS for shops, THAM MGT for staff and payroll, and MicFi for hotspot WiFi billing.",
     ogImage: "/assets/og/products.png"
   },
   "/services/": {

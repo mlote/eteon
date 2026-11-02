@@ -20,21 +20,21 @@
 
   var PRODUCTS = [
     {
-      name: "MicFi POS",
+      name: "THAM POS",
       type: "POS",
       description: "A point-of-sale system for shops and small retail: sales, stock, and receipts in one place.",
       image: "/assets/products/pos.png",
       link: ""
     },
     {
-      name: "MicFi HR Management System",
+      name: "THAM MGT",
       type: "Management System",
       description: "An HR management system for staff records, attendance, payroll, and leave in a single place.",
       image: "/assets/products/hrm.png",
       link: ""
     },
     {
-      name: "Hotspot WiFi Billing System",
+      name: "MicFi",
       type: "Billing System",
       description: "Track hotspot sales, accept Mobile Money, manage voucher distribution, send SMS alerts, and more.",
       image: "/assets/products/wifi.png",
