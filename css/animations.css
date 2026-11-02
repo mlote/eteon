@@ -4,8 +4,8 @@
 
 .reveal-ready .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
   transition-delay: var(--d, 0s);
 }
 
@@ -19,43 +19,43 @@
 }
 
 .reveal-ready .hero > .reveal:nth-child(2) {
-  --d: 0.05s;
+  --d: 0.04s;
 }
 
 .reveal-ready .hero > .reveal:nth-child(3) {
-  --d: 0.1s;
+  --d: 0.08s;
 }
 
 .reveal-ready .hero > .reveal:nth-child(4) {
-  --d: 0.15s;
+  --d: 0.12s;
 }
 
 .reveal-ready .hero > .reveal:nth-child(5) {
-  --d: 0.2s;
+  --d: 0.16s;
 }
 
 .reveal-ready .row-list .row:nth-child(2),
 .reveal-ready .grid-2 .step-card:nth-child(2),
 .reveal-ready .teaser-strip .media-card:nth-child(2) {
-  --d: 0.06s;
+  --d: 0.04s;
 }
 
 .reveal-ready .row-list .row:nth-child(3),
 .reveal-ready .grid-2 .step-card:nth-child(3),
 .reveal-ready .teaser-strip .media-card:nth-child(3) {
-  --d: 0.12s;
+  --d: 0.08s;
 }
 
 .reveal-ready .row-list .row:nth-child(4),
 .reveal-ready .grid-2 .step-card:nth-child(4),
 .reveal-ready .teaser-strip .media-card:nth-child(4) {
-  --d: 0.18s;
+  --d: 0.12s;
 }
 
 .reveal-ready .row-list .row:nth-child(5),
 .reveal-ready .grid-2 .step-card:nth-child(5),
 .reveal-ready .teaser-strip .media-card:nth-child(5) {
-  --d: 0.24s;
+  --d: 0.16s;
 }
 
 @media (prefers-reduced-motion: reduce) {

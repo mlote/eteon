@@ -14,7 +14,7 @@
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 26s linear infinite;
+  animation: marquee-scroll 30s linear infinite;
 }
 
 .marquee:hover .marquee-track,
@@ -32,9 +32,9 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  height: 36px;
-  padding: 0 14px;
-  background: var(--card);
+  height: 32px;
+  padding: 0 12px;
+  background: var(--surface);
   border: var(--bw) solid var(--border);
   border-radius: var(--radius);
   font-size: 13px;
@@ -45,7 +45,7 @@
 .marquee-card .icon {
   width: 14px;
   height: 14px;
-  color: var(--link);
+  color: var(--muted);
 }
 
 @keyframes marquee-scroll {
@@ -57,7 +57,7 @@
 /* #endregion */
 
 .card {
-  background: var(--card);
+  background: var(--surface);
   border: var(--bw) solid var(--border);
   border-radius: var(--radius);
 }
@@ -70,11 +70,11 @@
 
 .row {
   display: grid;
-  grid-template-columns: 34px 1fr;
+  grid-template-columns: 32px 1fr;
   gap: 12px;
   align-items: start;
   padding: 16px;
-  background: var(--card);
+  background: var(--surface);
   border: var(--bw) solid var(--border);
   border-radius: var(--radius);
 }
@@ -83,6 +83,7 @@
   color: var(--link);
   margin-top: 2px;
 }
+
 .row-title {
   margin-bottom: 2px;
 }
@@ -90,30 +91,31 @@
 .row-text {
   font-size: 15px;
   color: var(--muted);
+  line-height: 1.5;
 }
 /* #endregion */
 
 /* #region Steps */
 .step-card {
-  background: var(--card);
+  background: var(--surface);
   border: var(--bw) solid var(--border);
   border-radius: var(--radius);
   padding: 20px 16px;
-  text-align: center;
+  text-align: left;
 }
 
 .step-num {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
-  margin: 0 auto 10px;
+  width: 28px;
+  height: 28px;
+  margin: 0 0 10px;
   background: var(--bg);
   border: var(--bw) solid var(--border);
   border-radius: 50%;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--link);
 }
 
@@ -122,8 +124,8 @@
 }
 
 .step-card .row-text {
-  margin: 0 auto;
-  max-width: 28ch;
+  margin: 0;
+  max-width: none;
 }
 
 /* #endregion */
@@ -135,10 +137,10 @@
 }
 
 .service-block {
-  background: var(--card);
+  background: var(--surface);
   border: var(--bw) solid var(--border);
   border-radius: var(--radius);
-  padding: 18px 16px;
+  padding: 20px 16px;
 }
 
 .service-head {
@@ -156,6 +158,7 @@
   font-size: 15px;
   color: var(--muted);
   max-width: 68ch;
+  line-height: 1.5;
 }
 
 .chips {
@@ -172,7 +175,8 @@
   border: var(--bw) solid var(--border);
   border-radius: var(--radius);
   font-size: 13px;
-  color: var(--link);
+  color: var(--muted);
+  background: var(--bg);
 }
 
 /* #endregion */
@@ -228,18 +232,19 @@
   width: fit-content;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
+  min-height: 40px;
   margin: 8px auto 0;
   padding: 0 8px;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
+  color: var(--link);
 }
 
 .media-card {
   display: flex;
   flex-direction: column;
-  background: var(--card);
+  background: var(--surface);
   border: var(--bw) solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
@@ -258,7 +263,8 @@ a.media-card:hover {
   justify-content: center;
   aspect-ratio: 16 / 9;
   border-bottom: var(--bw) solid var(--border);
-  background-image: repeating-linear-gradient(135deg, transparent 0 9px, var(--bg) 9px 18px);
+  background: var(--bg);
+  overflow: hidden;
 }
 
 .thumb-mark {
@@ -292,14 +298,16 @@ a.media-card:hover {
   padding: 2px 8px;
   border: var(--bw) solid var(--border);
   border-radius: var(--radius);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--muted);
+  background: var(--bg);
 }
 
 .tag-offer {
   color: var(--offer);
   border-color: currentColor;
+  background: transparent;
 }
 
 .media-body .item-title {
@@ -314,8 +322,8 @@ a.media-card:hover {
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  padding: 28px 20px;
-  background: var(--card);
+  padding: 32px 20px;
+  background: var(--surface);
   border: var(--bw) solid var(--border);
   border-radius: var(--radius);
   text-align: center;
@@ -323,7 +331,7 @@ a.media-card:hover {
 
 .cta-card h2 {
   font-size: 20px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.01em;
 }
 
@@ -331,6 +339,7 @@ a.media-card:hover {
   font-size: 15px;
   color: var(--muted);
   margin-bottom: 6px;
+  max-width: 46ch;
 }
 
 .cta-block {
@@ -345,24 +354,26 @@ a.media-card:hover {
 }
 
 .intro-card {
-  padding: 18px 16px;
+  padding: 20px 18px;
   font-size: 15px;
   line-height: 1.6;
+  background: var(--surface);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
 }
 
 .faq-list {
   display: grid;
   gap: 12px;
   max-width: 720px;
-  margin: 0 auto;
+  margin: 0;
   width: 100%;
 }
 
 .faq-item {
   border-radius: var(--radius);
   border: var(--bw) solid var(--border);
-  background: var(--card);
-  box-shadow: var(--shadow);
+  background: var(--surface);
   overflow: hidden;
 }
 
@@ -382,7 +393,7 @@ a.media-card:hover {
 }
 
 .faq-question-text {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 16px;
 }
 
@@ -441,7 +452,7 @@ a.media-card:hover {
 
 .faq-cta {
   margin-top: 14px;
-  text-align: center;
+  text-align: left;
 }
 
 .location-line {
@@ -463,8 +474,8 @@ a.media-card:hover {
 .form-card {
   display: grid;
   gap: 14px;
-  padding: 18px 16px;
-  background: var(--card);
+  padding: 20px 18px;
+  background: var(--surface);
   border: var(--bw) solid var(--border);
   border-radius: var(--radius);
 }
@@ -498,7 +509,7 @@ a.media-card:hover {
 .field textarea {
   display: block;
   width: 100%;
-  min-height: 44px;
+  min-height: 40px;
   padding: 10px 12px;
   font: inherit;
   font-size: 15px;
@@ -510,7 +521,7 @@ a.media-card:hover {
 }
 
 .field select {
-  height: 44px;
+  height: 40px;
   min-height: 0;
   padding-top: 0;
   padding-bottom: 0;
@@ -539,13 +550,13 @@ a.media-card:hover {
 .field input[aria-invalid="true"],
 .field select[aria-invalid="true"],
 .field textarea[aria-invalid="true"] {
-  border-color: var(--offer);
+  border-color: var(--danger);
 }
 
 .field-error {
   margin-top: 6px;
   font-size: 13px;
-  color: var(--offer);
+  color: var(--danger);
 }
 
 .field-error[hidden] {
@@ -619,68 +630,35 @@ a.media-card:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius);
   color: var(--muted);
-  transition: color 0.15s ease;
-}
-
-.social-row a svg {
-  position: relative;
-  z-index: 1;
-}
-
-.social-row a::before {
-  content: "";
-  position: absolute;
-  inset: 8px;
-  border-radius: var(--radius);
-  background: transparent;
-  transition: background-color 0.15s ease;
-}
-
-.social-row a:hover {
-  text-decoration: none;
+  transition: color 0.15s ease, background-color 0.15s ease;
 }
 
 .social-row a:hover,
 .social-row a:focus-visible {
   color: var(--link);
-}
-
-.social-row a:hover::before,
-.social-row a:focus-visible::before {
   background: var(--hover);
+  text-decoration: none;
 }
 
 .social-row a[aria-label="MicFi on X"]:hover,
 .social-row a[aria-label="MicFi on X"]:focus-visible {
   color: var(--brand-x-ink);
-}
-
-.social-row a[aria-label="MicFi on X"]:hover::before,
-.social-row a[aria-label="MicFi on X"]:focus-visible::before {
   background: var(--brand-x);
 }
 
 .social-row a[aria-label="MicFi on Facebook"]:hover,
 .social-row a[aria-label="MicFi on Facebook"]:focus-visible {
   color: var(--brand-ink);
-}
-
-.social-row a[aria-label="MicFi on Facebook"]:hover::before,
-.social-row a[aria-label="MicFi on Facebook"]:focus-visible::before {
   background: var(--brand-fb);
 }
 
 .social-row a[aria-label="MicFi on YouTube"]:hover,
 .social-row a[aria-label="MicFi on YouTube"]:focus-visible {
   color: var(--brand-ink);
-}
-
-.social-row a[aria-label="MicFi on YouTube"]:hover::before,
-.social-row a[aria-label="MicFi on YouTube"]:focus-visible::before {
   background: var(--brand-yt);
 }
 
@@ -725,7 +703,7 @@ a.media-card:hover {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 10px;
   margin-top: 24px;
 }
@@ -744,7 +722,7 @@ a.media-card:hover {
 
 .share-label {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--muted);
   margin-right: 2px;
 }
@@ -753,20 +731,19 @@ a.media-card:hover {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  min-height: 34px;
+  min-height: 32px;
   padding: 0 12px;
-  background: var(--card);
+  background: var(--surface);
   border: var(--bw) solid var(--border);
   border-radius: 999px;
   color: var(--text);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
-  transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: border-color 0.15s ease, color 0.15s ease;
 }
 
 .share-btn:hover {
-  transform: translateY(-1px);
   color: var(--link);
   border-color: var(--link);
 }
@@ -787,15 +764,15 @@ a.media-card:hover {
 }
 
 .prose h2 {
-  font-size: 19px;
-  font-weight: 800;
+  font-size: 20px;
+  font-weight: 700;
   letter-spacing: -0.01em;
-  margin-top: 30px;
+  margin-top: 32px;
 }
 
 .prose h3 {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 600;
   margin-top: 24px;
 }
 
@@ -830,8 +807,93 @@ a.media-card:hover {
 .prose blockquote {
   padding: 12px 16px;
   border-left: 3px solid var(--link);
-  background: var(--card);
+  background: var(--surface);
   border-radius: var(--radius);
   color: var(--muted);
 }
+
+/* #endregion */
+
+/* #region UI primitives: dialog, tabs, toast */
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--pad);
+  z-index: 80;
+}
+
+.dialog {
+  width: 100%;
+  max-width: 480px;
+  background: var(--surface);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.dialog-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.dialog-body {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: var(--bw) solid var(--border);
+}
+
+.tab {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.tab:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.tab.is-active {
+  color: var(--text);
+  border-bottom-color: var(--button);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  background: var(--surface);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--text);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 90;
+}
+
 /* #endregion */

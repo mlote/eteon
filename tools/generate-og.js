@@ -34,10 +34,10 @@ var HEIGHT = 630;
 /* Brand values, taken from css/base.css so the cards match the site. */
 var COLORS = {
   bg: "#000000",
-  text: "#FFFFFF",
-  muted: "#9A9AA4",
-  accent: "#1A73C8",
-  offer: "#E0197B"
+  text: "#E7E9EA",
+  muted: "#71767B",
+  accent: "#1D9BF0",
+  offer: "#F91880"
 };
 
 var CHROME_CANDIDATES = [
@@ -127,7 +127,7 @@ function buildCards(M) {
 }
 
 function cardHtml(card) {
-  var font = fileUrl(path.join(ROOT, "assets", "fonts", "nunito-sans-latin.woff2"));
+  var font = fileUrl(path.join(ROOT, "assets", "fonts", "inter-latin.woff2"));
   /* Use the MicFi mark/logo alone on cards */
   var logo = fileUrl(path.join(ROOT, "assets", "mark.png"));
 
@@ -135,17 +135,17 @@ function cardHtml(card) {
     "<!DOCTYPE html>",
     '<html lang="en"><head><meta charset="utf-8">',
     "<style>",
-    '@font-face{font-family:Nunito;src:url("' + font + '") format("woff2");font-weight:200 1000;font-style:normal}',
+    '@font-face{font-family:Inter;src:url("' + font + '") format("woff2");font-weight:400 700;font-style:normal}',
     "*{margin:0;padding:0;box-sizing:border-box}",
     "html,body{width:" + WIDTH + "px;height:" + HEIGHT + "px;overflow:hidden}",
-    "body{font-family:Nunito,system-ui,sans-serif;color:" + COLORS.text + ";",
+    "body{font-family:Inter,system-ui,sans-serif;color:" + COLORS.text + ";",
     "background:" + COLORS.bg + ";",
     "padding:64px 78px 48px;display:flex;flex-direction:column;position:relative;overflow:hidden}",
     /* Flat brand shapes instead of a soft gradient. They look the same at
        preview size and keep the PNG a fraction of the size. */
     ".blob{position:absolute;border-radius:50%;pointer-events:none}",
-    ".blob.a{width:560px;height:560px;top:-210px;right:-170px;background:rgba(26,115,200,.30)}",
-    ".blob.b{width:300px;height:300px;bottom:-170px;left:-120px;background:rgba(224,25,123,.20)}",
+    ".blob.a{width:560px;height:560px;top:-210px;right:-170px;background:rgba(29,155,240,.18)}",
+    ".blob.b{width:300px;height:300px;bottom:-170px;left:-120px;background:rgba(244,33,46,.12)}",
     ".brand{position:relative}",
     ".brand img{height:76px;width:auto;display:block}",
     ".rule{width:92px;height:6px;border-radius:3px;background:" + COLORS.accent + ";margin-top:28px}",

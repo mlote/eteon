@@ -26,16 +26,18 @@
   <!-- META:END -->
   <meta name="theme-color" content="#000000">
   <link rel="icon" href="../assets/favicon.png" type="image/png">
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/nunito-sans-latin.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/inter-latin.woff2">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/animations.css">
   <script>
-    window.__mfTheme = { dark: "#000000", light: "#F7F7F8" };
+    window.__mfTheme = { dark: "#000000", light: "#FFFFFF" };
     try {
       var t = localStorage.getItem("micfi-theme");
-      var theme = t === "light" ? "light" : "dark";
+      var theme;
+      if (t === "light" || t === "dark") theme = t;
+      else theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", theme);
       var meta = document.querySelector('meta[name="theme-color"]');
       if (meta) meta.setAttribute("content", window.__mfTheme[theme]);

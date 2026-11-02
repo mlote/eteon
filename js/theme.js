@@ -6,7 +6,7 @@
   "use strict";
   var M = window.MicFi;
 
-  var THEME_COLORS = window.__mfTheme || { dark: "#000000", light: "#F7F7F8" };
+  var THEME_COLORS = window.__mfTheme || { dark: "#000000", light: "#FFFFFF" };
 
   M.initTheme = function () {
     var root = document.documentElement;
@@ -16,7 +16,11 @@
     function current() {
       var attr = root.getAttribute("data-theme");
       if (attr === "light" || attr === "dark") return attr;
-      return "dark";
+      try {
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      } catch (err) {
+        return "light";
+      }
     }
 
     function sync() {
